@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include <raylib.h>
+#include <Windows.h>
 
 using namespace std;
 #define SIMULATION_FILE "moistureData.txt"
@@ -28,7 +29,8 @@ void SoilMoisture::readData()
 	}
 	string line;
 	while (getline(fp, line)) {
-
+		this->soilMoistureLevel = stoi(line);
+		Sleep(30000);
 	}
 }
 
