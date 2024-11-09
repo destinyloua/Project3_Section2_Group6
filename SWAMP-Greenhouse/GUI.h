@@ -1,11 +1,12 @@
 #pragma once
+#include "Device.h"
+#include "System.h"
 class GUI
 {
-	int id;
-	int userId;
-
 public:
 	GUI();
-	bool Display();
+	bool Login(System& system);
+	void Panel(Device& device);
+	void DisplayAlert(Device& device);
 };
 
