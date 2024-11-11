@@ -1,5 +1,8 @@
 #pragma once
+#include "Device.h"
+#include "System.h"
 #include "raylib.h"
+
 class GUI
 {
 private:
@@ -13,5 +16,7 @@ public:
 	//bool Display();
 	void Init();
 	void UpdateDrawing();
+	//bool Login(System& system);
+	//void Panel(Device& device);
+	//void DisplayAlert(Device& device);
 };
-
