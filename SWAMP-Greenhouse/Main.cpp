@@ -8,6 +8,7 @@
 #include "Device.h"
 #include "CO2.h"
 #include "Energy.h"
+#include "GUI.h"
 
 using namespace std;
 
@@ -33,6 +34,16 @@ int main() {
 		delete device; 
 	}
 
+	// Liam: I commented it out for now so things can still run without the raylib stuff
+	//// GUI things
+	//GUI gui;
+	//// initialize gui
+	//gui.Init();
+	//// while the window is open, draw
+	//while (!WindowShouldClose())
+	//{
+	//	gui.UpdateDrawing();
+	//}
 
 	return 0; 
 }

@@ -1,11 +1,17 @@
 #pragma once
+#include "raylib.h"
 class GUI
 {
-	int id;
-	int userId;
-
+private:
+	//int id;
+	//int userId;
+	void DrawCameraControls();
+	void DrawPanels();
 public:
 	GUI();
-	bool Display();
+	~GUI();
+	//bool Display();
+	void Init();
+	void UpdateDrawing();
 };
 
