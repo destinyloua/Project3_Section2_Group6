@@ -5,10 +5,7 @@
 
 class HumiditySensor {
 private:
-    std::string dataFilePath;
     float humidityLevel;
-    float calibrationOffset;
-    std::vector<float> humidityLog;
 public:
     HumiditySensor();
     void generateRandomHumidity();
