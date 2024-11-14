@@ -18,7 +18,7 @@ HumiditySensor::HumiditySensor() {
 // generate random humidity level
 void HumiditySensor::generateRandomHumidity() {
     while (true) {
-        bool isOutOfRange = (rand() % 100) < 25; // had to add a 10% chance of getting an out off range level just for simulation
+        bool isOutOfRange = (rand() % 100) < 25; // had to add a 25% chance of getting an out off range level just for simulation
 
         if (isOutOfRange) {
             if (rand() % 2 == 0) {
