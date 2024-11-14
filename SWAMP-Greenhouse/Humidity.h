@@ -11,14 +11,12 @@ private:
     std::vector<float> humidityLog;
 public:
     HumiditySensor();
-    HumiditySensor(std::string dataFilePath = "");
+    void generateRandomHumidity();
+    std::string alertHumidityChange();
+    std::string getCurrentTime();
+    std::string getCurrentDate();
+    //void sendToHMI(std::string data);
+    void logHumidityToFile();
+    //void calibrate();
     ~HumiditySensor();
-    float monitorHumidity();
-    std::string alertOnHumidityChange();
-    std::vector<float> readSimulatedData(std::string filePath);
-    void sendToHMI(std::string data);
-    void logHumidity(float humidity);
-    std::string checkHumidityRange(float humidity);
-    void calibrate();
-    std::string generateHumidityLog();
 };

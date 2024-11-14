@@ -4,19 +4,42 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <stdlib.h> // for srand()
+#include <time.h> // for time()
+#include <thread> // for sleep
+#include <chrono> // date and time
+#include <iomanip> // for put time
+#include <string> 
 
-HumiditySensor::HumiditySensor() {}
-
-HumiditySensor::HumiditySensor(std::string dataFilePath)
-    : dataFilePath(dataFilePath), humidityLevel(0.0), calibrationOffset(0.0) {}
-
-HumiditySensor::~HumiditySensor() {}
-
-float HumiditySensor::monitorHumidity() {
-    return humidityLevel + calibrationOffset;
+HumiditySensor::HumiditySensor() {
+    srand((unsigned int)time(0)); //random number generation
 }
 
-std::string HumiditySensor::alertOnHumidityChange() {
+// generate random humidity level
+void HumiditySensor::generateRandomHumidity() {
+    while (true) {
+        bool isOutOfRange = (rand() % 100) < 25; // had to add a 10% chance of getting an out off range level just for simulation
+
+        if (isOutOfRange) {
+            if (rand() % 2 == 0) {
+                humidityLevel = 49.0 * rand() / RAND_MAX; // Generate below 50% 
+            }
+            else {
+                humidityLevel = 80.0 + 20.0 * rand() / RAND_MAX; // Generate above 80% 
+            }
+        }
+        else {
+            humidityLevel = 50.0 + 30.0 * rand() / RAND_MAX; // Generate within 50% to 80%
+        }
+       
+        logHumidityToFile();
+        
+        std::this_thread::sleep_for(std::chrono::seconds(15));
+    }
+}
+
+// detects if the humidity is under or over the desired range
+std::string HumiditySensor::alertHumidityChange() {
     if (humidityLevel < 50.0) {
         return "Alert: Humidity level out of range! Too low!";
     }
@@ -26,48 +49,54 @@ std::string HumiditySensor::alertOnHumidityChange() {
     return "Humidity level within range.";
 }
 
-std::vector<float> HumiditySensor::readSimulatedData(std::string filePath) {
-    std::vector<float> data;
-    std::ifstream file(filePath);
-    float value;
-    while (file >> value) {
-        data.push_back(value);
+std::string HumiditySensor::getCurrentDate() {
+    // get current date
+    auto now = std::chrono::system_clock::now();
+    std::time_t now_c = std::chrono::system_clock::to_time_t(now);
+    std::tm* now_tm = std::localtime(&now_c);
+
+    // convert to string
+    std::ostringstream oss;
+    oss; oss << std::put_time(now_tm, "%Y-%m-%d");
+    return oss.str();
+}
+
+std::string HumiditySensor::getCurrentTime() {
+    // get current time
+    auto now = std::chrono::system_clock::now();
+    std::time_t now_c = std::chrono::system_clock::to_time_t(now);
+    std::tm* now_tm = std::localtime(&now_c);
+
+    // convert to string
+    std::ostringstream oss;
+    oss; oss << std::put_time(now_tm, "%H:%M:%S"); 
+    return oss.str();
+}
+
+void HumiditySensor::logHumidityToFile() {
+    // open file in append mode 
+    std::ofstream fout("HumidityLog.txt", std::ios::app);
+    if (!fout) {
+        std::cerr << "Failed to open HumidityLog.txt" << std::endl;
+        return;
     }
-    file.close();
-    return data;
+    // get current time
+    std::string currentTime = getCurrentTime();
+    std::string currentDate = getCurrentDate();
+    std::string alertStatus = alertHumidityChange();
+
+    // log humidity and time to file
+    fout << "Date: " << currentDate << " Time: " << currentTime << ", Humidity Level: " << humidityLevel << ", Status: " << alertStatus << "\n";
+    std::cout << "Date: " << currentDate << " Time: " << currentTime << ", Humidity Level: " << humidityLevel << std::endl;
+    std::cout << alertHumidityChange() << "\n";
 }
 
-void HumiditySensor::sendToHMI(std::string data) {
-    // Logic to send data to HMI/SCADA module
-}
+//void HumiditySensor::sendToHMI(std::string data) {
+//    // Logic to send data to HMI/SCADA module
+//}
 
-void HumiditySensor::logHumidity(float humidity) {
-    humidityLog.push_back(humidity);
-}
+//void HumiditySensor::calibrate() {
+// 
+//}
 
-std::string HumiditySensor::checkHumidityRange(float humidity) {
-    if (humidity < 50.0 || humidity > 80.0) {
-        return "Humidity out of range!";
-    }
-    return "Humidity within range.";
-}
-
-void HumiditySensor::calibrate() {
-    std::vector<float> referenceValues = readSimulatedData(dataFilePath);
-    float referenceAverage = 0.0;
-    for (float value : referenceValues) {
-        referenceAverage += value;
-    }
-    referenceAverage /= referenceValues.size();
-
-    calibrationOffset = referenceAverage - humidityLevel;
-}
-
-std::string HumiditySensor::generateHumidityLog() {
-    std::ostringstream log;
-    log << "Humidity Log:\n";
-    for (float humidity : humidityLog) {
-        log << humidity << "\n";
-    }
-    return log.str();
-}
+HumiditySensor::~HumiditySensor() {}
