@@ -27,9 +27,13 @@ CO2::CO2()
 // display DANGER if value outside of threshold otherwise OK
 void CO2::displayWarning()
 {
-    if (CO2Value > 1500 || CO2Value < 1000) {
+    if (CO2Value > 1500) {
         isDanger = true;
-        cout << "CO2 Value: " << CO2Value << " ppm, DANGER! " << endl;
+        cout << "CO2 Value: " << CO2Value << " ppm, DANGER! Too High! " << endl;
+    }
+    else if(CO2Value < 1000){
+        isDanger = true;
+        cout << "CO2 Value: " << CO2Value << " ppm, DANGER! Too Low! " << endl;
     }
     else {
         cout << "CO2 Value: " << CO2Value << " ppm, OK!" << endl;

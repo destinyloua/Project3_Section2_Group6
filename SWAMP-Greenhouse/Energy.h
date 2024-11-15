@@ -17,6 +17,7 @@ public:
 	void enableLowPower(); 
 	void disableLowPower(); 
 	void showPowerOptions();
+	void showPowerStatus(); 
 	void control() override;
 	~Energy(); 
 

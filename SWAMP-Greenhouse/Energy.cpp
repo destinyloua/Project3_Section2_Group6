@@ -1,6 +1,4 @@
 #include "Energy.h"
-#include "System.h"
-#include "Device.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -16,6 +14,7 @@ Energy::Energy()
 	lowPower = false;
 	watts = 0.0;
 	fileName = "EnergyData.txt"; 
+    index = 0;
 }
 
 void Energy::readData()
@@ -72,16 +71,26 @@ void Energy::showPowerOptions()
         switch (choice) {
         case 'y': case 'Y':
             enableLowPower(); 
+            showPowerStatus();
             validInput = true;
             break;
         case 'n': case 'N':
             cout << "Low Power Mode was not enabled" << endl;
+            showPowerStatus();
             validInput = true;
             break; 
         default:
             cout << "Invalid input" << endl; 
         }
     }
+}
+
+void Energy::showPowerStatus()
+{
+    if (lowPower) {
+        cout << "Low Power Mode: ON" << endl; 
+    }
+    cout << "Low Power Mode: OFF" << endl;
 }
 
 void Energy::control()
@@ -102,9 +111,6 @@ void Energy::control()
         Sleep(5000);
     }
 }
-
-
-
 
 Energy::~Energy()
 {
