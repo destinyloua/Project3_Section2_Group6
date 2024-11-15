@@ -32,9 +32,9 @@ void HumiditySensor::generateRandomHumidity() {
             humidityLevel = 50.0 + 30.0 * rand() / RAND_MAX; // Generate within 50% to 80%
         }
        
-        logHumidityToFile();
+        logHumidityToFile(); // log humidity to file
         
-        std::this_thread::sleep_for(std::chrono::seconds(15));
+        std::this_thread::sleep_for(std::chrono::seconds(15)); // sleep to generate a value every 15 seconds
     }
 }
 
@@ -80,7 +80,7 @@ void HumiditySensor::logHumidityToFile() {
         std::cerr << "Failed to open HumidityLog.txt" << std::endl;
         return;
     }
-    // get current time
+    // get current time, date, and alert
     std::string currentTime = getCurrentTime();
     std::string currentDate = getCurrentDate();
     std::string alertStatus = alertHumidityChange();
