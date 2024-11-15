@@ -3,11 +3,12 @@
 // The SWAMP 
 
 #include <iostream>
+#include "raylib.h"
+#include "Camera.h"
 
 using namespace std;
 
 int main() {
-	// github sucks
 
 	return 0; 
 }
