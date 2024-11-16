@@ -1,3 +1,4 @@
+#pragma once
 #include "Device.h"
 #include <vector>
 class SoilMoisture : public Device {
@@ -9,8 +10,8 @@ class SoilMoisture : public Device {
 public:
 	SoilMoisture();
 	~SoilMoisture();
-	void readData();
-	void control();
+	void readData() override;
+	void control() override;
 	void SetAlert(string message);
 	void SetThreshold(int value);
 	int GetThreshold();

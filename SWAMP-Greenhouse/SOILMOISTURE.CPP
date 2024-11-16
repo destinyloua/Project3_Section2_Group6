@@ -3,7 +3,6 @@
 #include <sstream>
 #include <string>
 #include <iostream>
-#include <raylib.h>
 #include <Windows.h>
 
 using namespace std;
@@ -32,6 +31,10 @@ void SoilMoisture::readData()
 		this->soilMoistureLevel = stoi(line);
 		Sleep(30000);
 	}
+}
+
+void SoilMoisture::control()
+{
 }
 
 void SoilMoisture::SetAlert(string message)

@@ -1,4 +1,4 @@
-#include "Device.h"
+#pragma once
 #include "Camera.h"
 #include "User.h"
 #include "GUI.h"

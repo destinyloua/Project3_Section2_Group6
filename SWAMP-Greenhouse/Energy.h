@@ -1,6 +1,5 @@
 #pragma once
 #include <vector>
-#include <fstream>
 #include "Device.h"
 
 class Energy: public Device

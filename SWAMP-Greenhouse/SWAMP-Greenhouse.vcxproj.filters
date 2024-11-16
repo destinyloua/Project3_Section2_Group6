@@ -97,5 +97,8 @@
     <Text Include="EnergyData.txt">
       <Filter>Source Files</Filter>
     </Text>
+    <Text Include="moistureData.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
