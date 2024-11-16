@@ -4,7 +4,7 @@
 
 class HumiditySensor {
 private:
-    float humidityLevel;
+    double humidityLevel;
 public:
     HumiditySensor();
     void generateRandomHumidity();
