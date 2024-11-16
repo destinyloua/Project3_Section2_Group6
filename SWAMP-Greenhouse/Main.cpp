@@ -6,34 +6,28 @@
 #include "raylib.h"
 #include "Camera.h"
 
-using namespace std;
-
 int main() {
-	// these are just ways for me to test that it works since i don't have the GUI
-	const int screenWidth = 1500;
-	const int screenHeight = 1000;
-	InitWindow(screenWidth, screenHeight, "SWAMP -Camera View");
+    const int screenWidth = 1500;
+    const int screenHeight = 1000;
+    InitWindow(screenWidth, screenHeight, "SWAMP - Camera View");
 
-	CameraView cv;
+    CameraView cv;
 
-	SetTargetFPS(60);
+    SetTargetFPS(60);
 
-	while (!WindowShouldClose()) {
-		BeginDrawing();
-		ClearBackground(RAYWHITE);
+    while (!WindowShouldClose()) {
+        cv.CameraUpdate();
 
-		cv.DrawCameraPanel();
-		cv.DrawCameraControlUp();
-		cv.DrawCameraControlDown();
-		cv.DrawCameraControlLeft();
-		cv.DrawCameraControlRight();
-		cv.DrawCameraControlZoomIn();
-		cv.DrawCameraControlZoomOut();
-		cv.DrawCameraRecording();
-		cv.DrawFullScreen();
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
 
-		EndDrawing();
+        cv.CameraDraw();
 
-	}
-	return 0; 
+        EndDrawing();
+    }
+
+    CloseWindow();
+
+    return 0;
 }
+
