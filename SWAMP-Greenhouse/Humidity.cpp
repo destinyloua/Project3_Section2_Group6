@@ -11,6 +11,10 @@
 #include <iomanip> // for put time
 #include <string> 
 
+// I need to put this on main
+//HumiditySensor sensor;
+//sensor.generateRandomHumidity();
+
 HumiditySensor::HumiditySensor() {
     srand((unsigned int)time(0)); //random number generation
 }
@@ -90,13 +94,5 @@ void HumiditySensor::logHumidityToFile() {
     std::cout << "Date: " << currentDate << " Time: " << currentTime << ", Humidity Level: " << humidityLevel << std::endl;
     std::cout << alertHumidityChange() << "\n";
 }
-
-//void HumiditySensor::sendToHMI(std::string data) {
-//    // Logic to send data to HMI/SCADA module
-//}
-
-//void HumiditySensor::calibrate() {
-// 
-//}
 
 HumiditySensor::~HumiditySensor() {}

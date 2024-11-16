@@ -8,8 +8,6 @@
 using namespace std;
 
 int main() {
-	HumiditySensor sensor;
-	sensor.generateRandomHumidity();
 
 	return 0; 
 }

@@ -11,8 +11,6 @@ public:
     std::string alertHumidityChange();
     std::string getCurrentTime();
     std::string getCurrentDate();
-    //void sendToHMI(std::string data);
     void logHumidityToFile();
-    //void calibrate();
     ~HumiditySensor();
 };
