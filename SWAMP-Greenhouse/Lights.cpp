@@ -3,27 +3,27 @@
 Lights::Lights(string lightType, double minLightLevel, double maxLightLevel) : lightType(lightType), minLightLevel(minLightLevel), maxLightLevel(maxLightLevel) {}
 
 string Lights::getLightType() {
-	return lightType;
+    return lightType;
 }
 
 double Lights::getminLightLevel() {
-	return minLightLevel;
+    return minLightLevel;
 }
 double Lights::getmaxLightLevel() {
-	return maxLightLevel;
+    return maxLightLevel;
 }
-string Lights::setLightType(string lightType) {
-	this->lightType = lightType;
+void Lights::setLightType(string lightType) {
+    this->lightType = lightType;
 }
-double Lights::getminLightLevel(double minLightLevel) {
-	this->minLightLevel = minLightLevel;
+void Lights::setminLightLevel(double minLightLevel) {
+    this->minLightLevel = minLightLevel;
 }
-double Lights::getmaxLightLevel(double maxLightLevel) {
-	this->maxLightLevel = maxLightLevel;
+void Lights::setmaxLightLevel(double maxLightLevel) {
+    this->maxLightLevel = maxLightLevel;
 }
 void Lights::setScheduel(int StartTime, int StopTime) {
-	// still have to make this
+    // still have to make this
 }
 Lights::~Lights() {
-	// do nothing 
+    // do nothing 
 }
