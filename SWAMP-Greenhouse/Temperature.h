@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Device.h"
-#include "string"
+#include <string>
 #include <iostream>
 
 class Temperature : public Device

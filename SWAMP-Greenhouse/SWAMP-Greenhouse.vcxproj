@@ -109,6 +109,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Users\ddlou\OneDrive\Desktop\raylib-master\raylib-master\src;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -134,7 +135,6 @@
     <ClCompile Include="GUI.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Device.cpp" />
-    <ClCompile Include="System.cpp" />
     <ClCompile Include="Temperature.cpp" />
     <ClCompile Include="Lights.cpp" />
     <ClCompile Include="SoilMoisture.cpp" />
@@ -148,7 +148,6 @@
     <ClInclude Include="Greenhouse.h" />
     <ClInclude Include="Device.h" />
     <ClInclude Include="GUI.h" />
-    <ClInclude Include="System.h" />
     <ClInclude Include="Temperature.h" />
     <ClInclude Include="Lights.h" />
     <ClInclude Include="SoilMoisture.h" />
@@ -160,7 +159,17 @@
     <Text Include="EnergyData.txt" />
     <Text Include="moistureData.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\raylib.5.0.0\build\native\raylib.targets" Condition="Exists('..\packages\raylib.5.0.0\build\native\raylib.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\raylib.5.0.0\build\native\raylib.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\raylib.5.0.0\build\native\raylib.targets'))" />
+  </Target>
 </Project>
