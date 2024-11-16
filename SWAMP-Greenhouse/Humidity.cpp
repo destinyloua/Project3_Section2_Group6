@@ -11,10 +11,6 @@
 #include <iomanip> // for put time
 #include <string> 
 
-// I need to put this on main
-//HumiditySensor sensor;
-//sensor.generateRandomHumidity();
-
 HumiditySensor::HumiditySensor() {
     srand((unsigned int)time(0)); //random number generation
 }

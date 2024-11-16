@@ -4,36 +4,36 @@
 
 //#include "raylib.h" // make sure you have raylib installed 
 #include <iostream>
-#include <vector>
-#include "Device.h"
-#include "CO2.h"
-#include "Energy.h"
+//#include <vector>
+//#include "Device.h"
+//#include "CO2.h"
+//#include "Energy.h"
 #include "Humidity.h"
-#include "GUI.h"
+//#include "GUI.h"
 
 using namespace std;
 
 int main() {
 
 	// create the collection of devices -- need to update with System class  
-	vector<Device*> devices;
-	
-	// adding devices to the system 
-	devices.push_back(new Energy());
-	devices.push_back(new CO2());
-	
-	
-	// testing devices 
-	for (Device* device: devices) {
-		cout << "Testing " << device->getDeviceName() << endl; 
-		device->readData();
-		device->control();
-	}
+	//vector<Device*> devices;
+	//
+	//// adding devices to the system 
+	//devices.push_back(new Energy());
+	//devices.push_back(new CO2());
+	//
+	//
+	//// testing devices 
+	//for (Device* device: devices) {
+	//	cout << "Testing " << device->getDeviceName() << endl; 
+	//	device->readData();
+	//	device->control();
+	//}
 
-	// clean up devices 
-	for (Device* device : devices) {
-		delete device; 
-	}
+	//// clean up devices 
+	//for (Device* device : devices) {
+	//	delete device; 
+	//}
 
 	// Liam: I commented it out for now so things can still run without the raylib stuff
 	//// GUI things
@@ -45,6 +45,9 @@ int main() {
 	//{
 	//	gui.UpdateDrawing();
 	//}
+
+	HumiditySensor hs;
+	hs.generateRandomHumidity();
 
 	return 0; 
 }
