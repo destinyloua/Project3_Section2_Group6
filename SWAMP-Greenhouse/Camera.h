@@ -1,17 +1,26 @@
 #pragma once
 // Camera header file
+#include "raylib.h"
 #include <string>
 #include <list>
 
-class Camera {
-protected:
-	void DrawCameraPanel();
-	void DrawCameraControls();
-	void DrawCameraRecording();
-	void DrawFullScreen();
+class CameraView {
+private:
 
 public:
-	Camera();
-	void UpdateCameraDrawing();
-	~Camera();
+	CameraView();
+	void DrawCameraPanel();
+	//void DrawCameraControls();
+	void DrawCameraControlUp();
+	void DrawCameraControlDown();
+	void DrawCameraControlLeft();
+	void DrawCameraControlRight();
+	void DrawCameraControlZoomIn();
+	void DrawCameraControlZoomOut();
+	void DrawCameraRecording();
+	void DrawFullScreen();
+	//void UpdateCameraDrawing();
+	//void SaveRecording();
+	~CameraView();
 };
+
