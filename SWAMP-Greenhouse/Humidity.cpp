@@ -86,7 +86,7 @@ void HumiditySensor::logHumidityToFile() {
     std::string alertStatus = alertHumidityChange();
 
     // log humidity and time to file
-    fout << "Date: " << currentDate << " Time: " << currentTime << ", Humidity Level: " << humidityLevel << ", Status: " << alertStatus << "\n";
+    fout << "Date: " << currentDate << " | Time: " << currentTime << " | Humidity Level: " << humidityLevel << " | Status: " << alertStatus << "\n";
     std::cout << "Date: " << currentDate << " Time: " << currentTime << ", Humidity Level: " << humidityLevel << std::endl;
     std::cout << alertHumidityChange() << "\n";
 }

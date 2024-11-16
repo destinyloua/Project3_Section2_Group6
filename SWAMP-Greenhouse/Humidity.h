@@ -1,7 +1,6 @@
 #pragma once
 // Humidity header file
 #include <string>
-#include <vector>
 
 class HumiditySensor {
 private:
