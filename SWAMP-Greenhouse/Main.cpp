@@ -14,36 +14,49 @@ using namespace std;
 
 int main() {
 
-	// create the collection of devices -- need to update with System class  
-	vector<Device*> devices;
-	
-	// adding devices to the system 
-	devices.push_back(new Energy());
-	devices.push_back(new CO2());
-	
-	
-	// testing devices 
-	for (Device* device: devices) {
-		cout << "Testing " << device->getDeviceName() << endl; 
-		device->readData();
-		device->control();
-	}
+	//// create the collection of devices -- need to update with System class  
+	//vector<Device*> devices;
+	//
+	//// adding devices to the system 
+	//devices.push_back(new Energy());
+	//devices.push_back(new CO2());
+	//
+	//
+	//// testing devices 
+	//for (Device* device: devices) {
+	//	cout << "Testing " << device->getDeviceName() << endl; 
+	//	device->readData();
+	//	device->control();
+	//}
 
-	// clean up devices 
-	for (Device* device : devices) {
-		delete device; 
-	}
+	//// clean up devices 
+	//for (Device* device : devices) {
+	//	delete device; 
+	//}
 
 	// Liam: I commented it out for now so things can still run without the raylib stuff
-	//// GUI things
-	//GUI gui;
-	//// initialize gui
-	//gui.Init();
-	//// while the window is open, draw
-	//while (!WindowShouldClose())
-	//{
-	//	gui.UpdateDrawing();
-	//}
+	// GUI things
+	GUI gui;
+	// initialize gui
+	// 
+	// while the window is open, draw
+	const int screenWidth = 1500;
+	const int screenHeight = 1000;
+	InitWindow(screenWidth, screenHeight, "SWAMP - Sustainable Water Application for Managing Plants");
+	SetTargetFPS(60);
+	InputField inputField;
+
+	switch (gui.page)
+	{
+	case LoginPage: {
+		gui.Login();
+		}
+	case MainPage: {
+		gui.UpdateDrawing();
+	}
+	default:
+		break;
+	}
 
 	return 0; 
 }
