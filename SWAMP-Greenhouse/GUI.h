@@ -1,20 +1,34 @@
 #pragma once
+
 #include "Device.h"
 #include "raylib.h"
+#define MAX_CHARS 50
 
-class GUI
-{
-private:
-	int id;
-	int userId;
-	void DrawCameraControls();
-	void DrawPanels();
+enum Page { LoginPage = 0, MainPage };
+
+class InputField {
 public:
+	char inputText[MAX_CHARS + 1] = { 0 };
+	int textLength = 0;
+	bool isActive = false;
+	bool hasDecimalPoint = false;
+
+	InputField();
+	void Clear();
+};
+
+class GUI {
+private:
+	int userId;
+
+public:
+	int page;
 	GUI();
-	bool Login();
-	void Panel(Device& device);
-	void DisplayAlert(Device& device);
-	void Init();
+	void SetUser(int userId);
+	void Login();
+	void InputFieldDraw(Rectangle rec, InputField& inputField, Color bColor, Color lColor, Color tColor, int fontSize, int maxChars);
+	void DrawPanels();
+	void DrawCameraControls();
 	void UpdateDrawing();
 	~GUI();
 };
