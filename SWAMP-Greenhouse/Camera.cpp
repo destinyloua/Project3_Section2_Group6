@@ -8,12 +8,13 @@
 // Constructor for CameraView class
 CameraView::CameraView() : currentTexture{} {
     // Initialize button rectangles with positions and sizes
-    upButton = { 120, 600, 100, 100 };
-    downButton = { 120, 710, 100, 100 }; // x, y, width, height
-    leftButton = { 10, 710, 100, 100 };
-    rightButton = { 230, 710, 100, 100 };
-    zoomInButton = { 10, 600, 100, 100 };
-    zoomOutButton = { 230, 600, 100, 100 };
+    upButton = { 95, 600, 75, 75 };
+    downButton = { 95, 685, 75, 75 }; // x, y, width, height
+    leftButton = { 10, 685, 75, 75 };
+    rightButton = { 180, 685, 75, 75 };
+    zoomInButton = { 10, 600, 75, 75 };
+    zoomOutButton = { 180, 600, 75, 75 };
+
 
     // Load textures for directional buttons (icons)
     upTexture = LoadTexture("Up.png");
@@ -100,7 +101,7 @@ void CameraView::DrawCameraPanel() {
 // Draw the controls with button images
 void CameraView::DrawControls() {
     // Calculate the scale factor to fit the icons within the buttons
-    float scale = 0.2f; 
+    float scale = 0.15f; 
 
     // Draw the up button icon scaled
     Vector2 upButtonPosition = { upButton.x, upButton.y };
