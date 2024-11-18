@@ -173,7 +173,7 @@ void GUI::DrawCameraControls() {
 }
 
 void GUI::UpdateDrawing() {
-    while (page == MainPage) {
+    while (page == MainPage && !WindowShouldClose()) {
         BeginDrawing();
         // Background
         Color customBackground = { 204, 204, 204, 255 }; // red, green, blue, opacity

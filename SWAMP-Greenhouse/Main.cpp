@@ -2,7 +2,7 @@
 // Aiden, Destiny, Liam, Tyler
 // The SWAMP 
 
-//#include "raylib.h" // make sure you have raylib installed 
+#include "raylib.h" // make sure you have raylib installed 
 #include <iostream>
 #include <vector>
 #include "Device.h"
@@ -46,17 +46,23 @@ int main() {
 	SetTargetFPS(60);
 	InputField inputField;
 
+
 	switch (gui.page)
 	{
 	case LoginPage: {
 		gui.Login();
-		}
+	}
 	case MainPage: {
 		gui.UpdateDrawing();
+		break;
 	}
 	default:
 		break;
 	}
+	
 
+
+	
+	CloseWindow();
 	return 0; 
 }
