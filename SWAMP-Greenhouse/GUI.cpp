@@ -146,16 +146,16 @@ void GUI::DrawPanels() {
     DrawText("Energy Management", 860, 700, 40, BLACK); // x, y, size, colour
 
     // Notification Panel
-    DrawRectangle(850, 810, 600, 150, WHITE); // x, y, length, height, colour
-    DrawText("Notifications", 855, 820, 40, BLACK); // x, y, size, colour
+    //DrawRectangle(850, 810, 600, 150, WHITE); // x, y, length, height, colour
+    //DrawText("Notifications", 855, 820, 40, BLACK); // x, y, size, colour
 
-    // Graphs or tables?
-    DrawRectangle(300, 600, 500, 350, BLACK); // x, y, length, height, colour
-    DrawText("Graphs/Tables", 310, 610, 40, WHITE); // x, y, size, colour
+    // Notification
+    DrawRectangle(300, 650, 500, 300, WHITE); // x, y, length, height, colour
+    DrawText("Notifications", 310, 655, 40, BLACK); // x, y, size, colour
 
     // User info
-    DrawRectangle(10, 860, 200, 100, WHITE); // x, y, length, height, colour
-    DrawText("User: 0000", 15, 865, 20, DARKBLUE); // x, y, size, colour
+    DrawRectangle(10, 950, 200, 100, WHITE); // x, y, length, height, colour
+    DrawText("User: 0000", 15, 955, 20, DARKBLUE); // x, y, size, colour
 
 }
 
