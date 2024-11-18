@@ -146,30 +146,45 @@ void GUI::DrawPanels() {
     DrawText("Energy Management", 860, 700, 40, BLACK); // x, y, size, colour
 
     // Notification Panel
-    DrawRectangle(10, 750, 800, 200, WHITE); // x, y, length, height, colour
-    DrawText("Notifications", 15, 760, 20, BLACK); // x, y, size, colour
+    DrawRectangle(850, 810, 600, 150, WHITE); // x, y, length, height, colour
+    DrawText("Notifications", 855, 820, 40, BLACK); // x, y, size, colour
+
+    // Graphs or tables?
+    DrawRectangle(300, 600, 500, 350, BLACK); // x, y, length, height, colour
+    DrawText("Graphs/Tables", 310, 610, 40, WHITE); // x, y, size, colour
+
+    // User info
+    DrawRectangle(10, 860, 200, 100, WHITE); // x, y, length, height, colour
+    DrawText("User: 0000", 15, 865, 20, DARKBLUE); // x, y, size, colour
+
 }
 
 void GUI::DrawCameraControls() {
     // Camera Controls
     // UP
-    DrawRectangle(10, 600, 100, 100, GRAY); // x, y, length, height, colour
-    DrawText("Up", 15, 620, 20, BLACK); // x, y, size, colour
+    DrawRectangle(95, 600, 75, 75, GRAY); // x, y, length, height, colour
+    DrawText("UP", 100, 610, 10, BLACK); // x, y, size, colour
     // DOWN
-    DrawRectangle(120, 600, 100, 100, GRAY); // x, y, length, height, colour
-    DrawText("Down", 125, 620, 20, BLACK); // x, y, size, colour
+    DrawRectangle(95, 685, 75, 75, GRAY); // x, y, length, height, colour
+    DrawText("DOWN", 100, 690, 10, BLACK); // x, y, size, colour
     // LEFT
-    DrawRectangle(230, 600, 100, 100, GRAY); // x, y, length, height, colour
-    DrawText("Left", 235, 620, 20, BLACK); // x, y, size, colour
+    DrawRectangle(10, 685, 75, 75, GRAY); // x, y, length, height, colour
+    DrawText("LEFT", 15, 690, 10, BLACK); // x, y, size, colour
     // RIGHT
-    DrawRectangle(340, 600, 100, 100, GRAY); // x, y, length, height, colour
-    DrawText("Right", 345, 620, 20, BLACK); // x, y, size, colour
+    DrawRectangle(180, 685, 75, 75, GRAY); // x, y, length, height, colour
+    DrawText("RIGHT", 185, 690, 10, BLACK); // x, y, size, colour
     // ZOOM IN
-    DrawRectangle(450, 600, 150, 100, GRAY); // x, y, length, height, colour
-    DrawText("Zoom In", 455, 620, 20, BLACK); // x, y, size, colour
+    DrawRectangle(10, 600, 75, 75, GRAY); // x, y, length, height, colour
+    DrawText("ZOOM IN", 15, 610, 10, BLACK); // x, y, size, colour
     // ZOOM OUT
-    DrawRectangle(620, 600, 150, 100, GRAY); // x, y, length, height, colour
-    DrawText("Zoom Out", 625, 620, 20, BLACK); // x, y, size, colour
+    DrawRectangle(180, 600, 75, 75, GRAY); // x, y, length, height, colour
+    DrawText("ZOOM OUT", 185, 610, 10, BLACK); // x, y, size, colour
+    // RECORD
+    DrawRectangle(10, 770, 115, 75, GRAY); // x, y, length, height, colour
+    DrawText("RECORD", 15, 775, 10, BLACK); // x, y, size, colour
+    // FULL SCREEN
+    DrawRectangle(140, 770, 115, 75, GRAY); // x, y, length, height, colour
+    DrawText("FULL SCREEN", 145, 775, 10, BLACK); // x, y, size, colour
 }
 
 void GUI::UpdateDrawing() {
