@@ -4,15 +4,16 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <stdlib.h> // for srand()
+#include <stdlib.h> // for srand() and rand()
 #include <time.h> // for time()
 #include <thread> // for sleep
 #include <chrono> // date and time
 #include <iomanip> // for put time
 #include <string> 
 
-HumiditySensor::HumiditySensor() {
-    srand((unsigned int)time(0)); //random number generation
+// constructor
+HumiditySensor::HumiditySensor() : humidityLevel(0.0) {
+    srand((unsigned int)time(0)); // initialize random number generation
 }
 
 // generate random humidity level
