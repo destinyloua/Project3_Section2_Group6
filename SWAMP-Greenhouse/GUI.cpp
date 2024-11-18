@@ -145,10 +145,6 @@ void GUI::DrawPanels() {
     DrawRectangle(850, 690, 600, 100, PURPLE); // x, y, length, height, colour
     DrawText("Energy Management", 860, 700, 40, BLACK); // x, y, size, colour
 
-    // Notification Panel
-    //DrawRectangle(850, 810, 600, 150, WHITE); // x, y, length, height, colour
-    //DrawText("Notifications", 855, 820, 40, BLACK); // x, y, size, colour
-
     // Notification
     DrawRectangle(300, 650, 500, 300, WHITE); // x, y, length, height, colour
     DrawText("Notifications", 310, 655, 40, BLACK); // x, y, size, colour
