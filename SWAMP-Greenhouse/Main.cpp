@@ -8,6 +8,7 @@
 #include "Device.h"
 #include "CO2.h"
 #include "Energy.h"
+#include "Humidity.h"
 #include "GUI.h"
 
 using namespace std;
@@ -34,8 +35,11 @@ int main() {
 	//	delete device; 
 	//}
 
-	// Liam: I commented it out for now so things can still run without the raylib stuff
-	// GUI things
+	// Humidity
+	//HumiditySensor hs;
+	//hs.generateRandomHumidity();
+
+	// GUI
 	GUI gui;
 	// initialize gui
 	// 

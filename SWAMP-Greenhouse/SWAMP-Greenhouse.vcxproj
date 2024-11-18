@@ -157,6 +157,7 @@
   <ItemGroup>
     <Text Include="CO2Data.txt" />
     <Text Include="EnergyData.txt" />
+    <Text Include="HumidityLog.txt" />
     <Text Include="moistureData.txt" />
   </ItemGroup>
   <ItemGroup>

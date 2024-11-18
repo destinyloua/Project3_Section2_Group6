@@ -1,8 +1,16 @@
 #pragma once
 // Humidity header file
-#include "Device.h"
+#include <string>
 
-class Humidity : public Device {
+class HumiditySensor {
+private:
+    double humidityLevel;
 public:
-
+    HumiditySensor();
+    void generateRandomHumidity();
+    std::string alertHumidityChange();
+    std::string getCurrentTime();
+    std::string getCurrentDate();
+    void logHumidityToFile();
+    ~HumiditySensor();
 };
