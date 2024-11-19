@@ -1,6 +1,5 @@
 #pragma once
 // Camera header file
-#pragma once
 #include "raylib.h"
 
 class CameraView {
@@ -10,13 +9,11 @@ private:
     Rectangle upButton, downButton, leftButton, rightButton, zoomInButton, zoomOutButton, recordButton, fullscreenButton, exitFullscreenButton;
     bool isRecording; // Flag to indicate recording state
     bool isFullscreen; // Flag to indicate full screen state
-
     Color GetButtonColor(Rectangle button);
     void DrawControls();
     void DrawCameraPanel();
     void ResizeToPanel();
     void RestoreOriginalSize();
-
 public:
     CameraView();
     void HandleInput();

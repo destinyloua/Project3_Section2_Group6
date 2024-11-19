@@ -15,7 +15,7 @@ CameraView::CameraView() : currentTexture{}, isRecording(false), isFullscreen(fa
     zoomOutButton = { 180, 600, 75, 75 };
     recordButton = { 10, 770, 115, 75 };
     fullscreenButton = { 140, 770, 115, 75 };
-    exitFullscreenButton = { 1380, 970, 100, 20 };
+    exitFullscreenButton = { 1380, 950, 110, 40 };
     // Load textures for directional buttons
     upTexture = LoadTexture("Up.png");
     downTexture = LoadTexture("Down.png");
@@ -100,7 +100,7 @@ void CameraView::CameraDraw() {
     DrawControls();
 
     if (isRecording) {
-        DrawText("Recording...", 20, 95, 30, RED); // Adjust position and size as needed
+        DrawText("Recording...", 30, 100, 40, RED);
     }
 }
 
@@ -140,7 +140,7 @@ void CameraView::DrawControls() {
 
         // Draw the record button rectangle and label
         DrawRectangle(recordButton.x, recordButton.y, recordButton.width, recordButton.height, GRAY);
-        DrawText(isRecording ? "STOP" : "RECORD", recordButton.x + 15, recordButton.y + 5, 20, BLACK); // Adjust position and size as needed
+        DrawText(isRecording ? "STOP" : "RECORD", recordButton.x + 15, recordButton.y + 5, 20, BLACK);
 
         // Draw the full screen button rectangle and label
         DrawRectangle(fullscreenButton.x, fullscreenButton.y, fullscreenButton.width, fullscreenButton.height, GRAY);
@@ -156,18 +156,17 @@ void CameraView::DrawControls() {
         DrawRectangleLines(recordButton.x, recordButton.y, recordButton.width, recordButton.height, GetButtonColor(recordButton));
         DrawRectangleLines(fullscreenButton.x, fullscreenButton.y, fullscreenButton.width, fullscreenButton.height, GetButtonColor(fullscreenButton));
     }
-
     if (isFullscreen) {
         // Draw the exit full screen button at the bottom right corner
         DrawRectangle(exitFullscreenButton.x, exitFullscreenButton.y, exitFullscreenButton.width, exitFullscreenButton.height, DARKGRAY);
-        DrawText("EXIT FULLSCREEN", exitFullscreenButton.x + 10, exitFullscreenButton.y + 5, 10, WHITE);
+        DrawText("EXIT FULLSCREEN", exitFullscreenButton.x + 5, exitFullscreenButton.y + 5, 10, WHITE);
     }
 }
 
 void CameraView::ResizeToPanel() {
     if (currentTexture.id != 0) {
-        // Define the size of the control panel within the specified window dimensions
-        int panelWidth = 1490 - 10;
+        // Define the size of the control panel
+        int panelWidth = 1490 - 10; 
         int panelHeight = 990 - 90;
 
         // Load the current image from the texture
@@ -187,7 +186,7 @@ void CameraView::ResizeToPanel() {
 
 void CameraView::RestoreOriginalSize() {
     if (currentTexture.id != 0) {
-        // Get the original size of the image (assuming original dimensions are 800x500)
+        // Get the original size of the image
         int originalWidth = 800;
         int originalHeight = 500;
 
@@ -205,7 +204,7 @@ void CameraView::RestoreOriginalSize() {
         UnloadImage(img);
     }
 }
-
+// Clean up textures
 CameraView::~CameraView() {
     if (currentTexture.id != 0) {
         UnloadTexture(currentTexture);
