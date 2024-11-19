@@ -3,8 +3,8 @@
 // The SWAMP 
 
 #include <iostream>
-#include "raylib.h"
 #include "Camera.h"
+#include "raylib.h"
 
 int main() {
     const int screenWidth = 1500;
@@ -30,4 +30,5 @@ int main() {
 
     return 0;
 }
+
 

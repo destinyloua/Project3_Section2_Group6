@@ -5,12 +5,17 @@
 
 class CameraView {
 private:
-    Texture2D currentTexture; // Current texture to be displayed
-    Texture2D upTexture, downTexture, leftTexture, rightTexture, zoomInTexture, zoomOutTexture; // Textures for directional buttons
-    Rectangle upButton, downButton, leftButton, rightButton, zoomInButton, zoomOutButton;
+    Texture2D currentTexture;
+    Texture2D upTexture, downTexture, leftTexture, rightTexture, zoomInTexture, zoomOutTexture;
+    Rectangle upButton, downButton, leftButton, rightButton, zoomInButton, zoomOutButton, recordButton, fullscreenButton, exitFullscreenButton;
+    bool isRecording; // Flag to indicate recording state
+    bool isFullscreen; // Flag to indicate full screen state
+
     Color GetButtonColor(Rectangle button);
     void DrawControls();
     void DrawCameraPanel();
+    void ResizeToPanel();
+    void RestoreOriginalSize();
 
 public:
     CameraView();
