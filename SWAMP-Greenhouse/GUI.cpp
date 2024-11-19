@@ -34,7 +34,7 @@ void GUI::Login() {
     InputField inputField;
     bool uservalidation = true;
     int inputUserId;
-    while (page == LoginPage) {
+    while (page == LoginPage && !WindowShouldClose()) {
         BeginDrawing();
         ClearBackground(RAYWHITE);
 
