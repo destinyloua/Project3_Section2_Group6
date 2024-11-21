@@ -3,6 +3,7 @@
 #include "Device.h"
 #include "raylib.h"
 #include "CO2.h"
+#include "Energy.h"
 #define MAX_CHARS 50
 
 enum Page { LoginPage = 0, MainPage };
@@ -28,8 +29,8 @@ public:
 	void SetUser(int userId);
 	void Login();
 	void InputFieldDraw(Rectangle rec, InputField& inputField, Color bColor, Color lColor, Color tColor, int fontSize, int maxChars);
-	void DrawPanels(CO2& c);
+	void DrawPanels(CO2& c, Energy& e);
 	void DrawCameraControls();
-	void UpdateDrawing(CO2& c);
+	void UpdateDrawing(CO2& c, Energy& e);
 	~GUI();
 };

@@ -116,7 +116,7 @@ void GUI::InputFieldDraw(Rectangle rec, InputField& inputField, Color bColor, Co
     DrawText(inputField.inputText, rec.x + 5, rec.y + 15, fontSize, tColor);
 }
 
-void GUI::DrawPanels(CO2& c) {
+void GUI::DrawPanels(CO2& c, Energy& e) {
     // Camera view
     DrawRectangle(10, 90, 800, 500, DARKGRAY); // x, y, length, height, colour
     DrawText("Camera View", 20, 100, 40, WHITE); // x, y, size, colour
@@ -144,8 +144,10 @@ void GUI::DrawPanels(CO2& c) {
     DrawText("Soil Moisture", 860, 580, 40, BLACK); // x, y, size, colour
 
     // Energy
-    DrawRectangle(850, 690, 600, 100, PURPLE); // x, y, length, height, colour
-    DrawText("Energy Management", 860, 700, 40, BLACK); // x, y, size, colour
+    Rectangle energyButton = { 850, 690, 600, 100 };
+    e.drawEnergyButton(energyButton);
+    //DrawRectangle(850, 690, 600, 100, PURPLE); // x, y, length, height, colour
+    //DrawText("Energy Management", 860, 700, 40, BLACK); // x, y, size, colour
 
     // Notification
     DrawRectangle(300, 650, 500, 300, WHITE); // x, y, length, height, colour
@@ -201,14 +203,14 @@ void GUI::DrawCameraControls() {
 //    }
 //}
 
-void GUI::UpdateDrawing(CO2 &c) {
+void GUI::UpdateDrawing(CO2 &c, Energy& e) {
     // Background
     Color customBackground = { 204, 204, 204, 255 }; // red, green, blue, opacity
     ClearBackground(customBackground);
     // SWAMP
     DrawText("Sustainable Water Application for Monitoring Plants", 10, 10, 56, DARKGREEN); // x, y, size, colour
     // Panels and camera controls
-    DrawPanels(c);
+    DrawPanels(c, e);
     DrawCameraControls();
 }
 

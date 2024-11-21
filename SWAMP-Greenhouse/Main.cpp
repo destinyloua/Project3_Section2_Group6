@@ -15,9 +15,11 @@
 using namespace std;
 
 int main() {
-
+    // create CO2 device
     CO2 c;
     c.readData(); 
+    Energy e;
+    e.readData(); 
 
     // Humidity
     //HumiditySensor hs;
@@ -43,9 +45,14 @@ int main() {
 
             BeginDrawing();
 
-            gui.UpdateDrawing(c);  // Draw GUI elements
+            gui.UpdateDrawing(c,e);  // Draw GUI elements
             camera.CameraDraw();  // Draw camera view
-
+            if (c.showTrendGraph) {
+                DrawTexture(c.trendGraph, 100, 100, WHITE);
+            }
+            if (e.showEnergyControls) {
+                e.showPowerOptions(); 
+            }
             EndDrawing();
             break;
         }

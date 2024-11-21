@@ -15,8 +15,6 @@ class CO2: public Device
 	vector<double> co2History; 
 	int index; 
 	double lastUpdateTime; 
-	Texture2D trendGraph; 
-	bool showTrendGraph; 
 
 public:
 	CO2();
@@ -25,10 +23,15 @@ public:
 	void simulateCO2Reading(); 
 	void control() override; 
 	void setLastUpdateTime(double newTime);
+	void setDanger(); 
 
+	Texture2D trendGraph;
+	bool showTrendGraph = false;
 	bool isClicked(Rectangle r, int mouseButton);
 	void drawCO2Button(Rectangle btn);
-	void getTrendGraph(); 
+	void displayTrendGraph();
+	Texture2D getTrendGraph(const char* graphPath); 
+	void hideTrendGraph(); 
 	~CO2();
 
 	friend class GUI;

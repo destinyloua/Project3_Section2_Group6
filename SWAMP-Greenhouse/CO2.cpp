@@ -15,9 +15,7 @@ CO2::CO2()
 	isDanger = false; 
 	fileName = "CO2Data.txt"; // name of simulation data file 
     index = 0; 
-    lastUpdateTime = 0.0;
-    trendGraph = LoadTexture("CO2TrendGraph.png");
-    showTrendGraph = false; 
+    lastUpdateTime = 0.0; 
 }
 
 // display DANGER if value outside of threshold otherwise OK
@@ -25,14 +23,14 @@ void CO2::displayWarning()
 {
     if (CO2Value > 1500) {
         isDanger = true;
-        cout << "CO2 Value: " << CO2Value << " ppm, DANGER! Too High! " << endl;
+        //cout << "CO2 Value: " << CO2Value << " ppm, DANGER! Too High! " << endl;
     }
     else if(CO2Value < 1000){
         isDanger = true;
-        cout << "CO2 Value: " << CO2Value << " ppm, DANGER! Too Low! " << endl;
+       //cout << "CO2 Value: " << CO2Value << " ppm, DANGER! Too Low! " << endl;
     }
     else {
-        cout << "CO2 Value: " << CO2Value << " ppm, OK!" << endl;
+        //cout << "CO2 Value: " << CO2Value << " ppm, OK!" << endl;
     }
 }
 
@@ -90,6 +88,16 @@ void CO2::setLastUpdateTime(double newTime)
     lastUpdateTime = newTime;
 }
 
+void CO2::setDanger()
+{
+    if (CO2Value > 1500 || CO2Value < 1000) {
+        isDanger = true; 
+    }
+    else {
+        isDanger = false; 
+    }
+}
+
 bool CO2::isClicked(Rectangle r, int mouseButton)
 {
     Vector2 mousePosition = GetMousePosition();
@@ -100,11 +108,12 @@ bool CO2::isClicked(Rectangle r, int mouseButton)
 void CO2::drawCO2Button(Rectangle btn)
 { 
     double currentTime = GetTime();
-    //cout << "Current Time: " << currentTime << ", Last Update Time: " << lastUpdateTime << endl;
+  
     if (index < co2History.size()) {
         // TESTING with 5 seconds -- change to 60 seconds later
         if (currentTime - lastUpdateTime >= 5.0) {
             CO2Value = co2History[index++];
+            setDanger(); 
             cout << "CO2 value updated" << endl;    
             setLastUpdateTime(currentTime);
         }   
@@ -124,7 +133,7 @@ void CO2::drawCO2Button(Rectangle btn)
         btnColor = MAGENTA;
     }
 
-    // for danger color
+    // for danger color 
     if (isDanger) {
         btnColor = RED;
     }
@@ -142,21 +151,41 @@ void CO2::drawCO2Button(Rectangle btn)
 
     // handle click 
     if (isClicked(btn, MOUSE_LEFT_BUTTON)) {
-        getTrendGraph();
+        displayTrendGraph(); 
     }
-  
+    else {
+        hideTrendGraph();
+    }
+
+}
+
+void CO2::displayTrendGraph()
+{
+    trendGraph = getTrendGraph("CO2TrendGraph.png");
+    showTrendGraph = true;
 }
 
 // to be implemented with raylib 
-void CO2::getTrendGraph()
+Texture2D CO2::getTrendGraph(const char* graphPath)
 {
-    cout << "Displaying CO2 trends..." << endl; 
+    cout << "Displaying CO2 trends..." << endl;
+    Image graph = LoadImage(graphPath);
+    Texture2D trendGraph = LoadTextureFromImage(graph);
+    UnloadImage(graph);
+   
+    return trendGraph;
+}
+
+void CO2::hideTrendGraph()
+{
+    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+        showTrendGraph = false; 
+    }
 }
 
 // to ensure proper cleanup 
 CO2::~CO2()
 {
-    UnloadTexture(trendGraph);
 	if (dataFile.is_open()) {
 		dataFile.close(); 
 	}
