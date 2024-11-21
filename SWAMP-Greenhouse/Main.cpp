@@ -15,25 +15,9 @@ using namespace std;
 
 int main() {
 
-	//// create the collection of devices -- need to update with System class  
-	//vector<Device*> devices;
-	//
-	//// adding devices to the system 
-	//devices.push_back(new Energy());
-	//devices.push_back(new CO2());
-	//
-	//
-	//// testing devices 
-	//for (Device* device: devices) {
-	//	cout << "Testing " << device->getDeviceName() << endl; 
-	//	device->readData();
-	//	device->control();
-	//}
-
-	//// clean up devices 
-	//for (Device* device : devices) {
-	//	delete device; 
-	//}
+	// Testing CO2 
+	CO2 c; 
+	c.readData();
 
 	// Humidity
 	//HumiditySensor hs;
@@ -57,7 +41,7 @@ int main() {
 		gui.Login();
 	}
 	case MainPage: {
-		gui.UpdateDrawing();
+		gui.UpdateDrawing(c);
 		break;
 	}
 	default:

@@ -1,27 +1,23 @@
-// The CO2 monitoring system should get data from a .txt file to simulate the system reading CO2 data every 5 seconds. 
-// The values obtained from the .txt file will get stored in a vector. 
-// This module is monitor only - user will not be able to control. 
-// User will be able to view trend graph of all CO2 data (values stored in the vector) -- pending implementation with raylib 
-// Destiny 
-
 #include "CO2.h"
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <sstream> // used for parsing string data from file 
-#include <Windows.h> // used for Sleep()
 
 using namespace std; 
 
 // initialize with default values
 CO2::CO2()
 {
-    deviceName = "CO2 Sensor";
+    deviceName = "CO2";
     isActive = true; 
 	CO2Value = 0.0;
 	isDanger = false; 
 	fileName = "CO2Data.txt"; // name of simulation data file 
     index = 0; 
+    lastUpdateTime = 0.0;
+    trendGraph = LoadTexture("CO2TrendGraph.png");
+    showTrendGraph = false; 
 }
 
 // display DANGER if value outside of threshold otherwise OK
@@ -68,7 +64,7 @@ void CO2::readData()
     }
 
     // verify data reading successful 
-    cout << "All CO2 data read successfully" << endl;
+    //cout << "All CO2 data read successfully" << endl;
 }
 
 // CO2 is monitor only - simulate data updating every 5 seconds as stated in requirements 
@@ -77,7 +73,7 @@ void CO2::simulateCO2Reading()
     while (index < co2History.size()) {
         CO2Value = co2History[index];
         displayWarning(); 
-        Sleep(5000); 
+        //Sleep(5000); 
         index++; 
     }
 }
@@ -89,6 +85,68 @@ void CO2::control()
     simulateCO2Reading(); 
 }
 
+void CO2::setLastUpdateTime(double newTime)
+{
+    lastUpdateTime = newTime;
+}
+
+bool CO2::isClicked(Rectangle r, int mouseButton)
+{
+    Vector2 mousePosition = GetMousePosition();
+
+    return CheckCollisionPointRec(mousePosition, r) && IsMouseButtonPressed(mouseButton);
+}
+
+void CO2::drawCO2Button(Rectangle btn)
+{ 
+    double currentTime = GetTime();
+    //cout << "Current Time: " << currentTime << ", Last Update Time: " << lastUpdateTime << endl;
+    if (index < co2History.size()) {
+        // TESTING with 5 seconds -- change to 60 seconds later
+        if (currentTime - lastUpdateTime >= 5.0) {
+            CO2Value = co2History[index++];
+            cout << "CO2 value updated" << endl;    
+            setLastUpdateTime(currentTime);
+        }   
+    }
+    else {
+        // reset the data loop
+        index = 0;
+        if (!co2History.empty()) {
+            CO2Value = co2History[index];
+        }
+        setLastUpdateTime(currentTime);
+    }
+
+    // for hover color
+    Color btnColor = PINK;
+    if (CheckCollisionPointRec(GetMousePosition(), btn)) {
+        btnColor = MAGENTA;
+    }
+
+    // for danger color
+    if (isDanger) {
+        btnColor = RED;
+    }
+
+    // draw co2 button
+    DrawRectangleRec(btn, btnColor);
+    DrawText(deviceName.c_str(), btn.x + 10, btn.y + 10, 40, BLACK);
+
+    // draw co2 value 
+    ostringstream valueStream;
+    valueStream.precision(2);
+    valueStream << fixed << CO2Value << " ppm";
+    string valueText = valueStream.str();
+    DrawText(valueText.c_str(), btn.x + 10, btn.y + 60, 30, BLACK);
+
+    // handle click 
+    if (isClicked(btn, MOUSE_LEFT_BUTTON)) {
+        getTrendGraph();
+    }
+  
+}
+
 // to be implemented with raylib 
 void CO2::getTrendGraph()
 {
@@ -98,9 +156,10 @@ void CO2::getTrendGraph()
 // to ensure proper cleanup 
 CO2::~CO2()
 {
+    UnloadTexture(trendGraph);
 	if (dataFile.is_open()) {
 		dataFile.close(); 
 	}
 
-    cout << "CO2Data.txt closed successfully" << endl; 
+    //cout << "CO2Data.txt closed successfully" << endl; 
 }

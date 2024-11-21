@@ -163,6 +163,9 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\OneDrive\Desktop\CO2TrendGraph.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\raylib.5.0.0\build\native\raylib.targets" Condition="Exists('..\packages\raylib.5.0.0\build\native\raylib.targets')" />

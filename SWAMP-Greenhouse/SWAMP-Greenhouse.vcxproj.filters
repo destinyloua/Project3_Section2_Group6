@@ -92,8 +92,14 @@
       <Filter>Source Files</Filter>
     </Text>
     <Text Include="moistureData.txt" />
+    <Text Include="HumidityLog.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\OneDrive\Desktop\CO2TrendGraph.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

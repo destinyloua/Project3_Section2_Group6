@@ -1,6 +1,7 @@
 #include "GUI.h"
 #include "raylib.h"
 #include <iostream>
+
 using namespace std;
 
 InputField::InputField()
@@ -116,7 +117,7 @@ void GUI::InputFieldDraw(Rectangle rec, InputField& inputField, Color bColor, Co
     DrawText(inputField.inputText, rec.x + 5, rec.y + 15, fontSize, tColor);
 }
 
-void GUI::DrawPanels() {
+void GUI::DrawPanels(CO2& c) {
     // Camera view
     DrawRectangle(10, 90, 800, 500, DARKGRAY); // x, y, length, height, colour
     DrawText("Camera View", 20, 100, 40, WHITE); // x, y, size, colour
@@ -130,8 +131,10 @@ void GUI::DrawPanels() {
     DrawText("Temperature", 860, 220, 40, BLACK); // x, y, size, colour
 
     // CO2
-    DrawRectangle(850, 330, 600, 100, PINK); // x, y, length, height, colour
-    DrawText("CO2", 860, 340, 40, BLACK); // x, y, size, colour
+    Rectangle co2Button = { 850, 330, 600, 100 };
+    c.drawCO2Button(co2Button);
+    //DrawRectangle(850, 330, 600, 100, PINK); // x, y, length, height, colour
+    //DrawText("CO2", 860, 340, 40, BLACK); // x, y, size, colour
 
     // Humidity
     DrawRectangle(850, 450, 600, 100, ORANGE); // x, y, length, height, colour
@@ -183,7 +186,7 @@ void GUI::DrawCameraControls() {
     DrawText("FULL SCREEN", 145, 775, 10, BLACK); // x, y, size, colour
 }
 
-void GUI::UpdateDrawing() {
+void GUI::UpdateDrawing(CO2& c) {
     while (page == MainPage && !WindowShouldClose()) {
         BeginDrawing();
         // Background
@@ -192,7 +195,7 @@ void GUI::UpdateDrawing() {
         // SWAMP
         DrawText("Sustainable Water Application for Monitoring Plants", 10, 10, 56, DARKGREEN); // x, y, size, colour
         // Panels and camera controls
-        DrawPanels();
+        DrawPanels(c);
         DrawCameraControls();
 
         EndDrawing();
