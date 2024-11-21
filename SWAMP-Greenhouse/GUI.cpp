@@ -183,20 +183,32 @@ void GUI::DrawCameraControls() {
     DrawText("FULL SCREEN", 145, 775, 10, BLACK); // x, y, size, colour
 }
 
-void GUI::UpdateDrawing() {
-    while (page == MainPage && !WindowShouldClose()) {
-        BeginDrawing();
-        // Background
-        Color customBackground = { 204, 204, 204, 255 }; // red, green, blue, opacity
-        ClearBackground(customBackground);
-        // SWAMP
-        DrawText("Sustainable Water Application for Monitoring Plants", 10, 10, 56, DARKGREEN); // x, y, size, colour
-        // Panels and camera controls
-        DrawPanels();
-        DrawCameraControls();
+//void GUI::UpdateDrawing() {
+//    while (page == MainPage && !WindowShouldClose()) {
+//        BeginDrawing();
+//        // Background
+//        Color customBackground = { 204, 204, 204, 255 }; // red, green, blue, opacity
+//        ClearBackground(customBackground);
+//        // SWAMP
+//        DrawText("Sustainable Water Application for Monitoring Plants", 10, 10, 56, DARKGREEN); // x, y, size, colour
+//        // Panels and camera controls
+//        DrawPanels();
+//        DrawCameraControls();
+//
+//        EndDrawing();
+//    }
+//}
 
-        EndDrawing();
-    }
+void GUI::UpdateDrawing() {
+    // Background
+    Color customBackground = { 204, 204, 204, 255 }; // red, green, blue, opacity
+    ClearBackground(customBackground);
+    // SWAMP
+    DrawText("Sustainable Water Application for Monitoring Plants", 10, 10, 56, DARKGREEN); // x, y, size, colour
+    // Panels and camera controls
+    DrawPanels();
+    DrawCameraControls();
 }
+
 
 GUI::~GUI() {}

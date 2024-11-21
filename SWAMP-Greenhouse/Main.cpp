@@ -9,6 +9,7 @@
 #include "CO2.h"
 #include "Energy.h"
 #include "Humidity.h"
+#include "Camera.h"
 #include "GUI.h"
 
 using namespace std;
@@ -39,34 +40,39 @@ int main() {
 	//HumiditySensor hs;
 	//hs.generateRandomHumidity();
 
-	// GUI
-	GUI gui;
-	// initialize gui
-	// 
-	// while the window is open, draw
-	const int screenWidth = 1500;
-	const int screenHeight = 1000;
-	InitWindow(screenWidth, screenHeight, "SWAMP - Sustainable Water Application for Managing Plants");
-	SetTargetFPS(60);
-	InputField inputField;
+    const int screenWidth = 1500;
+    const int screenHeight = 1000;
+    InitWindow(screenWidth, screenHeight, "SWAMP - Sustainable Water Application for Managing Plants");
+    SetTargetFPS(60);
 
+    GUI gui;  // Create an instance of GUI
+    CameraView camera;  // Create an instance of CameraView
+    InputField inputField;
 
-	switch (gui.page)
-	{
-	case LoginPage: {
-		gui.Login();
-	}
-	case MainPage: {
-		gui.UpdateDrawing();
-		break;
-	}
-	default:
-		break;
-	}
-	
+    while (!WindowShouldClose()) {
+        switch (gui.page) {
+        case LoginPage: {
+            gui.Login();
+            break;
+        }
+        case MainPage: {
+            camera.CameraUpdate();  // Update camera
 
+            BeginDrawing();
+            ClearBackground(RAYWHITE);
 
-	
-	CloseWindow();
-	return 0; 
+            gui.UpdateDrawing();  // Draw GUI elements
+            camera.CameraDraw();  // Draw camera view
+
+            EndDrawing();
+            break;
+        }
+        default:
+            break;
+        }
+    }
+
+    CloseWindow();
+    return 0;
+
 }
