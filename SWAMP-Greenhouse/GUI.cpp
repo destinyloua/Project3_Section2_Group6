@@ -186,7 +186,7 @@ void GUI::DrawCameraControls() {
     //DrawText("FULL SCREEN", 145, 775, 10, BLACK); // x, y, size, colour
 }
 
-void GUI::UpdateDrawing() {
+void GUI::UpdateDrawing(CO2& c) {
     while (page == MainPage && !WindowShouldClose()) {
         BeginDrawing();
         // Background
@@ -195,8 +195,12 @@ void GUI::UpdateDrawing() {
         // SWAMP
         DrawText("Sustainable Water Application for Monitoring Plants", 10, 10, 56, DARKGREEN); // x, y, size, colour
         // Panels and camera controls
-        DrawPanels();
+        DrawPanels(c);
         DrawCameraControls();
+    }
+}
 
 
-GUI::~GUI() {}
+GUI::~GUI() {
+
+}
