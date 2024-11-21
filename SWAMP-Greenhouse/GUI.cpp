@@ -1,7 +1,6 @@
 #include "GUI.h"
 #include "raylib.h"
 #include <iostream>
-
 using namespace std;
 
 InputField::InputField()
@@ -20,7 +19,7 @@ void InputField::Clear()
     this->hasDecimalPoint = false;
 }
 
-GUI::GUI(){
+GUI::GUI() {
     this->userId = 0000;
     this->page = LoginPage;
 }
@@ -62,7 +61,7 @@ void GUI::Login() {
                     uservalidation = false;
                 }
             }
-            else{
+            else {
                 uservalidation = false;
             }
         }
@@ -186,21 +185,32 @@ void GUI::DrawCameraControls() {
     //DrawText("FULL SCREEN", 145, 775, 10, BLACK); // x, y, size, colour
 }
 
-void GUI::UpdateDrawing(CO2& c) {
-    while (page == MainPage && !WindowShouldClose()) {
-        BeginDrawing();
-        // Background
-        Color customBackground = { 204, 204, 204, 255 }; // red, green, blue, opacity
-        ClearBackground(customBackground);
-        // SWAMP
-        DrawText("Sustainable Water Application for Monitoring Plants", 10, 10, 56, DARKGREEN); // x, y, size, colour
-        // Panels and camera controls
-        DrawPanels(c);
-        DrawCameraControls();
-    }
+//void GUI::UpdateDrawing() {
+//    while (page == MainPage && !WindowShouldClose()) {
+//        BeginDrawing();
+//        // Background
+//        Color customBackground = { 204, 204, 204, 255 }; // red, green, blue, opacity
+//        ClearBackground(customBackground);
+//        // SWAMP
+//        DrawText("Sustainable Water Application for Monitoring Plants", 10, 10, 56, DARKGREEN); // x, y, size, colour
+//        // Panels and camera controls
+//        DrawPanels();
+//        DrawCameraControls();
+//
+//        EndDrawing();
+//    }
+//}
+
+void GUI::UpdateDrawing(CO2 &c) {
+    // Background
+    Color customBackground = { 204, 204, 204, 255 }; // red, green, blue, opacity
+    ClearBackground(customBackground);
+    // SWAMP
+    DrawText("Sustainable Water Application for Monitoring Plants", 10, 10, 56, DARKGREEN); // x, y, size, colour
+    // Panels and camera controls
+    DrawPanels(c);
+    DrawCameraControls();
 }
 
 
-GUI::~GUI() {
-
-}
+GUI::~GUI() {}

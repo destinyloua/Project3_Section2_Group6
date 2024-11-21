@@ -16,13 +16,12 @@ using namespace std;
 
 int main() {
 
-	// Testing CO2 
-	CO2 c; 
-	c.readData();
+    CO2 c;
+    c.readData(); 
 
-	// Humidity
-	//HumiditySensor hs;
-	//hs.generateRandomHumidity();
+    // Humidity
+    //HumiditySensor hs;
+    //hs.generateRandomHumidity();
 
     const int screenWidth = 1500;
     const int screenHeight = 1000;
@@ -33,23 +32,29 @@ int main() {
     CameraView camera;  // Create an instance of CameraView
     InputField inputField;
 
+    while (!WindowShouldClose()) {
+        switch (gui.page) {
+        case LoginPage: {
+            gui.Login();
+            break;
+        }
+        case MainPage: {
+            camera.CameraUpdate();  // Update camera
 
-	switch (gui.page)
-	{
-	case LoginPage: {
-		gui.Login();
-	}
-	case MainPage: {
-		gui.UpdateDrawing(c);
-		break;
-	}
-	default:
-		break;
-	}
-	
+            BeginDrawing();
 
+            gui.UpdateDrawing(c);  // Draw GUI elements
+            camera.CameraDraw();  // Draw camera view
 
-	
-	CloseWindow();
-	return 0; 
+            EndDrawing();
+            break;
+        }
+        default:
+            break;
+        }
+    }
+
+    CloseWindow();
+    return 0;
+
 }
