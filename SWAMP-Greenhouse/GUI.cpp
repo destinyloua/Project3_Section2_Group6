@@ -159,28 +159,28 @@ void GUI::DrawCameraControls() {
     // Camera Controls
     // UP
     DrawRectangle(95, 600, 75, 75, GRAY); // x, y, length, height, colour
-    DrawText("UP", 100, 610, 10, BLACK); // x, y, size, colour
+    //DrawText("UP", 100, 610, 10, BLACK); // x, y, size, colour
     // DOWN
     DrawRectangle(95, 685, 75, 75, GRAY); // x, y, length, height, colour
-    DrawText("DOWN", 100, 690, 10, BLACK); // x, y, size, colour
+    //DrawText("DOWN", 100, 690, 10, BLACK); // x, y, size, colour
     // LEFT
     DrawRectangle(10, 685, 75, 75, GRAY); // x, y, length, height, colour
-    DrawText("LEFT", 15, 690, 10, BLACK); // x, y, size, colour
+    //DrawText("LEFT", 15, 690, 10, BLACK); // x, y, size, colour
     // RIGHT
     DrawRectangle(180, 685, 75, 75, GRAY); // x, y, length, height, colour
-    DrawText("RIGHT", 185, 690, 10, BLACK); // x, y, size, colour
+    //DrawText("RIGHT", 185, 690, 10, BLACK); // x, y, size, colour
     // ZOOM IN
     DrawRectangle(10, 600, 75, 75, GRAY); // x, y, length, height, colour
-    DrawText("ZOOM IN", 15, 610, 10, BLACK); // x, y, size, colour
+    //DrawText("ZOOM IN", 15, 610, 10, BLACK); // x, y, size, colour
     // ZOOM OUT
     DrawRectangle(180, 600, 75, 75, GRAY); // x, y, length, height, colour
-    DrawText("ZOOM OUT", 185, 610, 10, BLACK); // x, y, size, colour
+    //DrawText("ZOOM OUT", 185, 610, 10, BLACK); // x, y, size, colour
     // RECORD
     DrawRectangle(10, 770, 115, 75, GRAY); // x, y, length, height, colour
-    DrawText("RECORD", 15, 775, 10, BLACK); // x, y, size, colour
+    //DrawText("RECORD", 15, 775, 10, BLACK); // x, y, size, colour
     // FULL SCREEN
     DrawRectangle(140, 770, 115, 75, GRAY); // x, y, length, height, colour
-    DrawText("FULL SCREEN", 145, 775, 10, BLACK); // x, y, size, colour
+    //DrawText("FULL SCREEN", 145, 775, 10, BLACK); // x, y, size, colour
 }
 
 //void GUI::UpdateDrawing() {

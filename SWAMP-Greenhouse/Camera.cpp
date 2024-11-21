@@ -144,7 +144,7 @@ void CameraView::DrawControls() {
 
         // Draw the full screen button rectangle and label
         DrawRectangle(fullscreenButton.x, fullscreenButton.y, fullscreenButton.width, fullscreenButton.height, GRAY);
-        DrawText("FULL SCREEN", fullscreenButton.x + 5, fullscreenButton.y + 5, 10, BLACK);
+        DrawText("FULLSCREEN", fullscreenButton.x + 5, fullscreenButton.y + 5, 17, BLACK);
 
         // Draw the button outlines for visual feedback
         DrawRectangleLines(upButton.x, upButton.y, upButton.width, upButton.height, GetButtonColor(upButton));
