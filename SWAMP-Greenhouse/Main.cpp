@@ -59,7 +59,6 @@ int main() {
             camera.CameraUpdate();  // Update camera
 
             BeginDrawing();
-            ClearBackground(RAYWHITE);
 
             gui.UpdateDrawing();  // Draw GUI elements
             camera.CameraDraw();  // Draw camera view
