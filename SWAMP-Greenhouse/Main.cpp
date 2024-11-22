@@ -20,6 +20,7 @@ int main() {
     c.readData(); 
     Energy e;
     e.readData(); 
+    SoilMoisture s;
 
     // Humidity
     //HumiditySensor hs;
@@ -34,7 +35,14 @@ int main() {
     CameraView camera;  // Create an instance of CameraView
     InputField inputField;
 
-    while (!WindowShouldClose()) {
+    double lastUpdateTime = GetTime();
+
+    while (!WindowShouldClose() && gui.page!=Quit) {
+        if (GetTime() - lastUpdateTime >= 1) {
+            s.readData();
+            s.control();
+            lastUpdateTime = GetTime();
+        }
         switch (gui.page) {
         case LoginPage: {
             gui.Login();
@@ -45,7 +53,7 @@ int main() {
 
             BeginDrawing();
 
-            gui.UpdateDrawing(c,e);  // Draw GUI elements
+            gui.UpdateDrawing(c,e,s);  // Draw GUI elements
             camera.CameraDraw();  // Draw camera view
             if (c.showTrendGraph) {
                 DrawTexture(c.trendGraph, 100, 100, WHITE);

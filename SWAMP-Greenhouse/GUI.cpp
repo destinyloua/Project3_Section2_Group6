@@ -116,7 +116,7 @@ void GUI::InputFieldDraw(Rectangle rec, InputField& inputField, Color bColor, Co
     DrawText(inputField.inputText, rec.x + 5, rec.y + 15, fontSize, tColor);
 }
 
-void GUI::DrawPanels(CO2& c, Energy& e) {
+void GUI::DrawPanels(CO2& c, Energy& e, SoilMoisture& s) {
     // Camera view
     DrawRectangle(10, 90, 800, 500, DARKGRAY); // x, y, length, height, colour
     DrawText("Camera View", 20, 100, 40, WHITE); // x, y, size, colour
@@ -142,7 +142,21 @@ void GUI::DrawPanels(CO2& c, Energy& e) {
     // Soil Moisture
     DrawRectangle(850, 570, 600, 100, GREEN); // x, y, length, height, colour
     DrawText("Soil Moisture", 860, 580, 40, BLACK); // x, y, size, colour
-
+    DrawRectangle(850, 570, 600, 100, BROWN); // x, y, length, height, colour
+    DrawText("Soil Moisture", 860, 580, 40, BLACK); // x, y, size, colour
+    if (s.GetIrrigation()) {
+        DrawText("Irrigation On", 1142, 580, 40, GREEN); // x, y, size, colour
+    }
+    else {
+        DrawText("Irrigation Off", 1142, 580, 40, RED); // x, y, size, colour
+    }
+    if (s.GetData()>30) {
+        DrawText(TextFormat("Current: %.2f%%", s.GetData()), 860, 623, 30, BLACK); // x, y, size, colour
+    }
+    else
+    {
+        DrawText(TextFormat("Current: %.2f%%", s.GetData()), 860, 623, 30, RED); // x, y, size, colour
+    }
     // Energy
     Rectangle energyButton = { 850, 690, 600, 100 };
     e.drawEnergyButton(energyButton);
@@ -152,10 +166,19 @@ void GUI::DrawPanels(CO2& c, Energy& e) {
     // Notification
     DrawRectangle(300, 650, 500, 300, WHITE); // x, y, length, height, colour
     DrawText("Notifications", 310, 655, 40, BLACK); // x, y, size, colour
-
+    if (s.GetData() < s.GetThreshold()) {
+        DrawText(TextFormat("SOIL MOISTURE: Below threshold, irrigation on"), 310, 712, 20, RED); // x, y, size, colour
+    }
     // User info
     DrawRectangle(10, 950, 200, 100, WHITE); // x, y, length, height, colour
     DrawText("User: 0000", 15, 955, 20, DARKBLUE); // x, y, size, colour
+
+    Rectangle quitButton = { 850,838,600,100 };
+    DrawRectangleRec(quitButton, RED); // x, y, length, height, colour
+    DrawText("Quit", 1103, 861, 40, BLACK); // x, y, size, colour
+    if (CheckCollisionPointRec(GetMousePosition(), quitButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        page = Quit;
+    }
 
 }
 
@@ -203,14 +226,14 @@ void GUI::DrawCameraControls() {
 //    }
 //}
 
-void GUI::UpdateDrawing(CO2 &c, Energy& e) {
+void GUI::UpdateDrawing(CO2 &c, Energy& e, SoilMoisture& s) {
     // Background
     Color customBackground = { 204, 204, 204, 255 }; // red, green, blue, opacity
     ClearBackground(customBackground);
     // SWAMP
     DrawText("Sustainable Water Application for Monitoring Plants", 10, 10, 56, DARKGREEN); // x, y, size, colour
     // Panels and camera controls
-    DrawPanels(c, e);
+    DrawPanels(c, e, s);
     DrawCameraControls();
 }
 
