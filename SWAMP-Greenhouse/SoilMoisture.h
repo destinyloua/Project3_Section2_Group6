@@ -2,19 +2,19 @@
 #include "Device.h"
 #include <vector>
 class SoilMoisture : public Device {
-	int soilMoistureLevel;
-	int threshold;
-	vector<int> soilMoistureLog;
+	double soilMoistureLevel;
+	double threshold;
 	string soilMoistureData;
-	string alert;
+	bool irrigation;
+	ifstream fp;
 public:
 	SoilMoisture();
 	~SoilMoisture();
 	void readData() override;
 	void control() override;
-	void SetAlert(string message);
+	double GetThreshold();
 	void SetThreshold(int value);
-	int GetThreshold();
-	bool GetIrrigationStatus();
-	void SetIrrigationStatus(bool status);
+	double GetData();
+	void SetIrrigationStatus();
+	bool GetIrrigation();
 };

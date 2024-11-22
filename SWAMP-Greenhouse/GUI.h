@@ -4,9 +4,10 @@
 #include "raylib.h"
 #include "CO2.h"
 #include "Energy.h"
+#include "SoilMoisture.h"
 #define MAX_CHARS 50
 
-enum Page { LoginPage = 0, MainPage };
+enum Page { LoginPage = 0, MainPage , Quit};
 
 class InputField {
 public:
@@ -29,8 +30,8 @@ public:
 	void SetUser(int userId);
 	void Login();
 	void InputFieldDraw(Rectangle rec, InputField& inputField, Color bColor, Color lColor, Color tColor, int fontSize, int maxChars);
-	void DrawPanels(CO2& c, Energy& e);
+	void DrawPanels(CO2& c, Energy& e, SoilMoisture& s);
 	void DrawCameraControls();
-	void UpdateDrawing(CO2& c, Energy& e);
+	void UpdateDrawing(CO2& c, Energy& e, SoilMoisture& s);
 	~GUI();
 };
