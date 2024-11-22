@@ -2,9 +2,10 @@
 
 #include "Device.h"
 #include "raylib.h"
+#include <vector>
 #define MAX_CHARS 50
 
-enum Page { LoginPage = 0, MainPage };
+enum Page { LoginPage = 0, MainPage, Quit };
 
 class InputField {
 public:
@@ -27,8 +28,8 @@ public:
 	void SetUser(int userId);
 	void Login();
 	void InputFieldDraw(Rectangle rec, InputField& inputField, Color bColor, Color lColor, Color tColor, int fontSize, int maxChars);
-	void DrawPanels();
+	void DrawPanels(vector<Device*> devices);
 	void DrawCameraControls();
-	void UpdateDrawing();
+	void UpdateDrawing(vector<Device*> devices);
 	~GUI();
 };

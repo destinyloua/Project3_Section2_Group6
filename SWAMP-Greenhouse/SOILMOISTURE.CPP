@@ -7,12 +7,15 @@
 
 using namespace std;
 #define SIMULATION_FILE "moistureData.txt"
+#define SLEEPTIME 5000
+
 SoilMoisture::SoilMoisture()
 {
 	this->threshold = 30;
 	this->soilMoistureLevel = 0;
 	this->soilMoistureData = SIMULATION_FILE;
-	this->alert = "";
+	this->irrigation = true;
+	this->fp.open(soilMoistureData);
 }
 
 SoilMoisture::~SoilMoisture()
@@ -21,23 +24,47 @@ SoilMoisture::~SoilMoisture()
 
 void SoilMoisture::readData()
 {
-	ifstream fp;
-	fp.open(soilMoistureData);
 	if (!fp.is_open()) {
 		cerr << "ERROR: Can not ope file" << endl;
+		return;
 	}
 	string line;
-	while (getline(fp, line)) {
-		this->soilMoistureLevel = stoi(line);
-		Sleep(30000);
+	if (getline(fp, line)) {
+		this->soilMoistureLevel = stod(line);
 	}
+	return;
 }
 
 void SoilMoisture::control()
 {
+	//if (!fp.is_open()) {
+	//	cerr << "ERROR: Can not ope file" << endl;
+	//	return;
+	//}
+	//string line;
+	//if (getline(fp, line)) {
+	//	this->threshold = stod(line);
+	//}
+	if (soilMoistureLevel >= 30) {
+		this->irrigation = false;
+	}
+	else {
+		this->irrigation = true;
+	}
 }
 
-void SoilMoisture::SetAlert(string message)
+double SoilMoisture::getThreshold()
 {
-	this->alert = message;
+	return threshold;
+}
+
+bool SoilMoisture::getMarker()
+{
+	return irrigation;
+}
+
+
+double SoilMoisture::getData()
+{
+	return soilMoistureLevel;
 }

@@ -10,11 +10,17 @@
 #include "Energy.h"
 #include "Humidity.h"
 #include "GUI.h"
+#include "SoilMoisture.h"
 
 using namespace std;
 
+int test(SoilMoisture soil) {
+	return soil.getData();
+}
+
 int main() {
 
+	// 
 	//// create the collection of devices -- need to update with System class  
 	//vector<Device*> devices;
 	//
@@ -41,6 +47,11 @@ int main() {
 
 	// GUI
 	GUI gui;
+	SoilMoisture soil;
+	vector<Device*> devices;
+	Device* soilSTuff = &soil;
+	devices.push_back(soilSTuff);
+
 	// initialize gui
 	// 
 	// while the window is open, draw
@@ -57,16 +68,12 @@ int main() {
 		gui.Login();
 	}
 	case MainPage: {
-		gui.UpdateDrawing();
+		gui.UpdateDrawing(devices);
 		break;
 	}
 	default:
 		break;
 	}
-	
-
-
-	
 	CloseWindow();
 	return 0; 
 }
