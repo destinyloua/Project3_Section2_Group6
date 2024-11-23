@@ -155,8 +155,7 @@ void Energy::drawEnergyButton(Rectangle btn)
     double currentTime = GetTime();
 
     if (index < energyHistory.size()) {
-        // TESTING with 5 seconds -- change to 60 seconds later
-        if (currentTime - lastUpdateTime >= 5.0) {
+        if (currentTime - lastUpdateTime >= 30.0) {
             watts = energyHistory[index++];
             if (lowPower) {
                 watts = 250.00;

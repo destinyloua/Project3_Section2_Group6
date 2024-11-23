@@ -113,7 +113,7 @@ void CO2::drawCO2Button(Rectangle btn)
   
     if (index < co2History.size()) {
         // TESTING with 5 seconds -- change to 60 seconds later
-        if (currentTime - lastUpdateTime >= 5.0) {
+        if (currentTime - lastUpdateTime >= 50.0) {
             CO2Value = co2History[index++];
             setDanger(); 
             cout << "CO2 value updated" << endl;    
