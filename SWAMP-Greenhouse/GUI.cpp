@@ -174,10 +174,10 @@ void GUI::DrawPanels(CO2& c, Energy& e, SoilMoisture& s, Humidity& h) {
     DrawRectangleRec(downButton, WHITE);
     DrawText("U", 1371, 630, 30, BLACK);
     DrawText("D", 1411, 630, 30, BLACK);
-    if (CheckCollisionPointRec(GetMousePosition(), upButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+    if (CheckCollisionPointRec(GetMousePosition(), upButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && s.GetThreshold() <100) {
         s.IncreaseThreshold();
     }
-    if (CheckCollisionPointRec(GetMousePosition(), downButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+    if (CheckCollisionPointRec(GetMousePosition(), downButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && s.GetThreshold()>0) {
         s.DecreaseThreshold();
     }
 
