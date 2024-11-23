@@ -49,6 +49,7 @@ int main() {
             break;
         }
         case MainPage: {
+            InputField thresholdInput;
             camera.CameraUpdate();  // Update camera
 
             BeginDrawing();
@@ -60,6 +61,9 @@ int main() {
             }
             if (e.showEnergyControls) {
                 e.showPowerOptions(); 
+            }
+            if (s.GetPanel()) {
+                s.DrawSoilPanel();
             }
             EndDrawing();
             break;

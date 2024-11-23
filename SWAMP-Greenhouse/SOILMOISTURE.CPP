@@ -3,11 +3,11 @@
 #include <sstream>
 #include <string>
 #include <iostream>
-#include <Windows.h>
+#include <raylib.h>
 
 using namespace std;
 #define SIMULATION_FILE "moistureData.txt"
-#define SLEEPTIME 5000
+#define SLEEPTIME 5
 
 SoilMoisture::SoilMoisture()
 {
@@ -37,10 +37,7 @@ void SoilMoisture::readData()
 
 void SoilMoisture::control()
 {
-	if (soilMoistureLevel >= 30) {
-		this->irrigation = false;
-	}
-	else {
+	if (soilMoistureLevel < 30) {
 		this->irrigation = true;
 	}
 }

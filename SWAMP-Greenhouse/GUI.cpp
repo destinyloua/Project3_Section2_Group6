@@ -140,9 +140,17 @@ void GUI::DrawPanels(CO2& c, Energy& e, SoilMoisture& s) {
     DrawText("Humidity", 860, 460, 40, BLACK); // x, y, size, colour
 
     // Soil Moisture
-    DrawRectangle(850, 570, 600, 100, GREEN); // x, y, length, height, colour
-    DrawText("Soil Moisture", 860, 580, 40, BLACK); // x, y, size, colour
-    DrawRectangle(850, 570, 600, 100, BROWN); // x, y, length, height, colour
+    Rectangle soilButton = { 850,570,600,100 };
+    if (CheckCollisionPointRec(GetMousePosition(), soilButton)) {
+        DrawRectangleRec(soilButton, DARKBROWN);
+        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            s.SetIrrigationStatus();
+        }
+    }
+    else
+    {
+        DrawRectangleRec(soilButton, BROWN);
+    }
     DrawText("Soil Moisture", 860, 580, 40, BLACK); // x, y, size, colour
     if (s.GetIrrigation()) {
         DrawText("Irrigation On", 1142, 580, 40, GREEN); // x, y, size, colour
@@ -157,6 +165,7 @@ void GUI::DrawPanels(CO2& c, Energy& e, SoilMoisture& s) {
     {
         DrawText(TextFormat("Current: %.2f%%", s.GetData()), 860, 623, 30, RED); // x, y, size, colour
     }
+
     // Energy
     Rectangle energyButton = { 850, 690, 600, 100 };
     e.drawEnergyButton(energyButton);
