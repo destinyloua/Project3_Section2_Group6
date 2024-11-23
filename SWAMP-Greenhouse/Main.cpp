@@ -48,6 +48,7 @@ int main() {
             break;
         }
         case MainPage: {
+            InputField thresholdInput;
             camera.CameraUpdate();  // Update camera
 
             BeginDrawing();
