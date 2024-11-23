@@ -176,9 +176,11 @@ void Humidity::drawHumidityLogTable() {
     scrollOffset -= GetMouseWheelMove() * scrollSpeed;
     DrawRectangle(0, 0, 1500, 1000, LIGHTGRAY);
     DrawText("Humidity Log:", 100, 50, 40, BLACK);
+    DrawText("Minimum: 50%, Maximum: 80%, Average: 60-70%", 100, 100, 40, BLACK);
+
 
     int startX = 100;
-    int startY = 120 + scrollOffset;
+    int startY = 150 + scrollOffset;
     int lineHeight = 30;
 
     for (size_t i = 0; i < logEntries.size(); i++) {
