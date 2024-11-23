@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #include "GUI.h"
 #include "raylib.h"
 #include <iostream>
@@ -19,7 +21,7 @@ void InputField::Clear()
     this->hasDecimalPoint = false;
 }
 
-GUI::GUI() {
+GUI::GUI() : showTable(false), scrollOffset(0), scrollSpeed(20.0f) {
     this->userId = 0000;
     this->page = LoginPage;
 }
@@ -116,7 +118,7 @@ void GUI::InputFieldDraw(Rectangle rec, InputField& inputField, Color bColor, Co
     DrawText(inputField.inputText, rec.x + 5, rec.y + 15, fontSize, tColor);
 }
 
-void GUI::DrawPanels(CO2& c, Energy& e, SoilMoisture& s) {
+void GUI::DrawPanels(CO2& c, Energy& e, SoilMoisture& s, Humidity& h) {
     // Camera view
     DrawRectangle(10, 90, 800, 500, DARKGRAY); // x, y, length, height, colour
     DrawText("Camera View", 20, 100, 40, WHITE); // x, y, size, colour
@@ -136,8 +138,7 @@ void GUI::DrawPanels(CO2& c, Energy& e, SoilMoisture& s) {
     //DrawText("CO2", 860, 340, 40, BLACK); // x, y, size, colour
 
     // Humidity
-    DrawRectangle(850, 450, 600, 100, ORANGE); // x, y, length, height, colour
-    DrawText("Humidity", 860, 460, 40, BLACK); // x, y, size, colour
+    h.drawHumidityPanel();
 
     // Soil Moisture
     DrawRectangle(850, 570, 600, 100, GREEN); // x, y, length, height, colour
@@ -157,6 +158,7 @@ void GUI::DrawPanels(CO2& c, Energy& e, SoilMoisture& s) {
     {
         DrawText(TextFormat("Current: %.2f%%", s.GetData()), 860, 623, 30, RED); // x, y, size, colour
     }
+
     // Energy
     Rectangle energyButton = { 850, 690, 600, 100 };
     e.drawEnergyButton(energyButton);
@@ -182,59 +184,15 @@ void GUI::DrawPanels(CO2& c, Energy& e, SoilMoisture& s) {
 
 }
 
-void GUI::DrawCameraControls() {
-    // Camera Controls
-    // UP
-    DrawRectangle(95, 600, 75, 75, GRAY); // x, y, length, height, colour
-    //DrawText("UP", 100, 610, 10, BLACK); // x, y, size, colour
-    // DOWN
-    DrawRectangle(95, 685, 75, 75, GRAY); // x, y, length, height, colour
-    //DrawText("DOWN", 100, 690, 10, BLACK); // x, y, size, colour
-    // LEFT
-    DrawRectangle(10, 685, 75, 75, GRAY); // x, y, length, height, colour
-    //DrawText("LEFT", 15, 690, 10, BLACK); // x, y, size, colour
-    // RIGHT
-    DrawRectangle(180, 685, 75, 75, GRAY); // x, y, length, height, colour
-    //DrawText("RIGHT", 185, 690, 10, BLACK); // x, y, size, colour
-    // ZOOM IN
-    DrawRectangle(10, 600, 75, 75, GRAY); // x, y, length, height, colour
-    //DrawText("ZOOM IN", 15, 610, 10, BLACK); // x, y, size, colour
-    // ZOOM OUT
-    DrawRectangle(180, 600, 75, 75, GRAY); // x, y, length, height, colour
-    //DrawText("ZOOM OUT", 185, 610, 10, BLACK); // x, y, size, colour
-    // RECORD
-    DrawRectangle(10, 770, 115, 75, GRAY); // x, y, length, height, colour
-    //DrawText("RECORD", 15, 775, 10, BLACK); // x, y, size, colour
-    // FULL SCREEN
-    DrawRectangle(140, 770, 115, 75, GRAY); // x, y, length, height, colour
-    //DrawText("FULL SCREEN", 145, 775, 10, BLACK); // x, y, size, colour
-}
-
-//void GUI::UpdateDrawing() {
-//    while (page == MainPage && !WindowShouldClose()) {
-//        BeginDrawing();
-//        // Background
-//        Color customBackground = { 204, 204, 204, 255 }; // red, green, blue, opacity
-//        ClearBackground(customBackground);
-//        // SWAMP
-//        DrawText("Sustainable Water Application for Monitoring Plants", 10, 10, 56, DARKGREEN); // x, y, size, colour
-//        // Panels and camera controls
-//        DrawPanels();
-//        DrawCameraControls();
-//
-//        EndDrawing();
-//    }
-//}
-
-void GUI::UpdateDrawing(CO2 &c, Energy& e, SoilMoisture& s) {
+void GUI::UpdateDrawing(CO2 &c, Energy& e, SoilMoisture& s, Humidity& h) {
     // Background
     Color customBackground = { 204, 204, 204, 255 }; // red, green, blue, opacity
     ClearBackground(customBackground);
     // SWAMP
     DrawText("Sustainable Water Application for Monitoring Plants", 10, 10, 56, DARKGREEN); // x, y, size, colour
     // Panels and camera controls
-    DrawPanels(c, e, s);
-    DrawCameraControls();
+    DrawPanels(c, e, s, h);
+    h.update();
 }
 
 

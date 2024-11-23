@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 // CSCN72030 - Project III
 // Aiden, Destiny, Liam, Tyler
 // The SWAMP 
@@ -21,10 +23,7 @@ int main() {
     Energy e;
     e.readData(); 
     SoilMoisture s;
-
-    // Humidity
-    //HumiditySensor hs;
-    //hs.generateRandomHumidity();
+    Humidity h;
 
     const int screenWidth = 1500;
     const int screenHeight = 1000;
@@ -53,13 +52,16 @@ int main() {
 
             BeginDrawing();
 
-            gui.UpdateDrawing(c,e,s);  // Draw GUI elements
+            gui.UpdateDrawing(c,e,s,h);  // Draw GUI elements
             camera.CameraDraw();  // Draw camera view
             if (c.showTrendGraph) {
                 DrawTexture(c.trendGraph, 100, 100, WHITE);
             }
             if (e.showEnergyControls) {
                 e.showPowerOptions(); 
+            }
+            if (h.showTable) {
+                h.drawHumidityLogTable();
             }
             EndDrawing();
             break;

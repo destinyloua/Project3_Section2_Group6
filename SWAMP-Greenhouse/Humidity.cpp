@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 // Humidity.h implementation
+// Liam
 #include "Humidity.h"
 #include <iostream>
 #include <fstream>
@@ -11,36 +12,51 @@
 #include <iomanip> // for put time
 #include <string> 
 
-// constructor
-HumiditySensor::HumiditySensor() : humidityLevel(0.0) {
+// Constructor to initialize the Humidity class
+Humidity::Humidity()
+    : humidityLevel(0.0), showTable(false), scrollOffset(0), scrollSpeed(20.0f) {
     srand((unsigned int)time(0)); // initialize random number generation
+    lastUpdateTime = std::chrono::high_resolution_clock::now();
+    generateRandomHumidity();
 }
 
-// generate random humidity level
-void HumiditySensor::generateRandomHumidity() {
-    while (true) {
-        bool isOutOfRange = (rand() % 100) < 25; // had to add a 25% chance of getting an out off range level just for simulation
+// Update method to check the elapsed time and generate new humidity value if necessary
+void Humidity::update() {
+    auto currentTime = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = currentTime - lastUpdateTime;
 
-        if (isOutOfRange) {
-            if (rand() % 2 == 0) {
-                humidityLevel = 49.0 * rand() / RAND_MAX; // Generate below 50% 
-            }
-            else {
-                humidityLevel = 80.0 + 20.0 * rand() / RAND_MAX; // Generate above 80% 
-            }
-        }
-        else {
-            humidityLevel = 50.0 + 30.0 * rand() / RAND_MAX; // Generate within 50% to 80%
-        }
-
-        logHumidityToFile(); // log humidity to file
-
-        std::this_thread::sleep_for(std::chrono::seconds(15)); // sleep to generate a value every 15 seconds
+    if (elapsed.count() >= 15.0) {
+        generateRandomHumidity();
+        lastUpdateTime = currentTime;
     }
 }
 
-// detects if the humidity is under or over the desired range
-std::string HumiditySensor::alertHumidityChange() {
+// Generate a random humidity value and log it
+void Humidity::generateRandomHumidity() {
+    bool isOutOfRange = (rand() % 100) < 25; // 25% chance of being out of range
+
+    if (isOutOfRange) {
+        if (rand() % 2 == 0) {
+            humidityLevel = 49.0 * rand() / RAND_MAX; // Generate below 50%
+        }
+        else {
+            humidityLevel = 80.0 + 20.0 * rand() / RAND_MAX; // Generate above 80%
+        }
+    }
+    else {
+        humidityLevel = 50.0 + 30.0 * rand() / RAND_MAX; // Generate within 50% to 80%
+    }
+
+    // Format humidity level to two decimal places
+    std::stringstream stream;
+    stream << std::fixed << std::setprecision(2) << humidityLevel;
+    stream >> humidityLevel;
+
+    logHumidityToFile(); // log humidity to file
+}
+
+// Alert if the humidity level is out of range
+std::string Humidity::alertHumidityChange() {
     if (humidityLevel < 50.0) {
         return "Alert: Humidity level out of range! Too low!";
     }
@@ -50,46 +66,150 @@ std::string HumiditySensor::alertHumidityChange() {
     return "Humidity level within range.";
 }
 
-std::string HumiditySensor::getCurrentDate() {
-    // get current date
+// Get the current date as a string
+std::string Humidity::getCurrentDate() {
     auto now = std::chrono::system_clock::now();
     std::time_t now_c = std::chrono::system_clock::to_time_t(now);
-    std::tm* now_tm = std::localtime(&now_c);
+    std::tm now_tm;
+    localtime_s(&now_tm, &now_c);
 
-    // convert to string
     std::ostringstream oss;
-    oss; oss << std::put_time(now_tm, "%Y-%m-%d");
+    oss << std::put_time(&now_tm, "%Y-%m-%d");
     return oss.str();
 }
 
-std::string HumiditySensor::getCurrentTime() {
-    // get current time
+// Get the current time as a string
+std::string Humidity::getCurrentTime() {
     auto now = std::chrono::system_clock::now();
     std::time_t now_c = std::chrono::system_clock::to_time_t(now);
-    std::tm* now_tm = std::localtime(&now_c);
+    std::tm now_tm;
+    localtime_s(&now_tm, &now_c);
 
-    // convert to string
     std::ostringstream oss;
-    oss; oss << std::put_time(now_tm, "%H:%M:%S");
+    oss << std::put_time(&now_tm, "%H:%M:%S");
     return oss.str();
 }
 
-void HumiditySensor::logHumidityToFile() {
-    // open file in append mode 
+// Log the humidity data to a file
+void Humidity::logHumidityToFile() {
     std::ofstream fout("HumidityLog.txt", std::ios::app);
     if (!fout) {
         std::cerr << "Failed to open HumidityLog.txt" << std::endl;
         return;
     }
-    // get current time, date, and alert
+
     std::string currentTime = getCurrentTime();
     std::string currentDate = getCurrentDate();
     std::string alertStatus = alertHumidityChange();
 
-    // log humidity and time to file
     fout << "Date: " << currentDate << " | Time: " << currentTime << " | Humidity Level: " << humidityLevel << " | Status: " << alertStatus << "\n";
-    std::cout << "Date: " << currentDate << " Time: " << currentTime << ", Humidity Level: " << humidityLevel << std::endl;
-    std::cout << alertHumidityChange() << "\n";
 }
 
-HumiditySensor::~HumiditySensor() {}
+// Read the humidity log from a file and return it as a vector of strings
+std::vector<std::string> Humidity::readHumidityLog() {
+    std::vector<std::string> logEntries;
+    std::ifstream fin("HumidityLog.txt");
+    if (!fin) {
+        std::cerr << "Failed to open HumidityLog.txt" << std::endl;
+        return logEntries;
+    }
+
+    std::string line;
+    while (std::getline(fin, line)) {
+        logEntries.push_back(line);
+    }
+
+    return logEntries;
+}
+
+// Draw the humidity panel with current humidity level
+//void Humidity::drawHumidityPanel(Color darkOrange) {
+//    Color panelColor = ORANGE;
+//    if (humidityLevel < 50.0 || humidityLevel > 80.0) {
+//        panelColor = RED;
+//    }
+//
+//    Vector2 mousePosition = GetMousePosition();
+//    Rectangle panelRect = { 850, 450, 600, 100 };
+//
+//    if (CheckCollisionPointRec(mousePosition, panelRect)) {
+//        panelColor = darkOrange;
+//        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+//            handleHumidityPanelClick();
+//        }
+//    }
+//
+//    DrawRectangleRec(panelRect, panelColor);
+//    DrawText("Humidity", 860, 460, 40, BLACK);
+//
+//    std::ostringstream oss;
+//    oss << std::fixed << std::setprecision(2) << humidityLevel << "%";
+//    std::string humidityText = oss.str();
+//    DrawText(humidityText.c_str(), 860, 510, 30, BLACK);
+//
+//    if (showTable) {
+//        drawHumidityLogTable();
+//    }
+//}
+void Humidity::drawHumidityPanel() {
+    Color panelColor = ORANGE; // Default panel color
+    if (humidityLevel < 50.0 || humidityLevel > 80.0) {
+        panelColor = RED; // Out of range color
+    }
+
+    Vector2 mousePosition = GetMousePosition();
+    Rectangle panelRect = { 850, 450, 600, 100 };
+
+    if (CheckCollisionPointRec(mousePosition, panelRect)) {
+        panelColor = { 255, 140, 0, 255 }; // Use RGB values for dark orange when hovered
+
+        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            handleHumidityPanelClick(); // Handle click
+        }
+    }
+
+    DrawRectangleRec(panelRect, panelColor);
+    DrawText("Humidity", 860, 460, 40, BLACK); // Original font size for "Humidity"
+
+    std::ostringstream oss;
+    oss << std::fixed << std::setprecision(2) << humidityLevel << "%";
+    std::string humidityText = oss.str();
+    DrawText(humidityText.c_str(), 860, 510, 30, BLACK); // Original font size for value
+
+    if (showTable) {
+        drawHumidityLogTable(); // Draw the log table if flag is true
+    }
+}
+
+// Handle click event for the humidity panel
+void Humidity::handleHumidityPanelClick() {
+    logEntries = readHumidityLog();
+    showTable = !showTable;
+    scrollOffset = 0;
+}
+
+// Draw the humidity log table
+void Humidity::drawHumidityLogTable() {
+    scrollOffset -= GetMouseWheelMove() * scrollSpeed;
+    DrawRectangle(0, 0, 1500, 1000, LIGHTGRAY);
+    DrawText("Humidity Log:", 100, 50, 40, BLACK);
+
+    int startX = 100;
+    int startY = 120 + scrollOffset;
+    int lineHeight = 30;
+
+    for (size_t i = 0; i < logEntries.size(); i++) {
+        DrawText(logEntries[i].c_str(), startX, startY + (i * lineHeight), 25, BLACK);
+    }
+
+    Rectangle backButton = { 1500 - 110, 10, 100, 40 };
+    DrawRectangleRec(backButton, DARKGRAY);
+    DrawText("Back", backButton.x + 10, backButton.y + 10, 25, RAYWHITE);
+
+    Vector2 mousePosition = GetMousePosition();
+    if (CheckCollisionPointRec(mousePosition, backButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        showTable = false;
+    }
+}
+
+Humidity::~Humidity() {}
