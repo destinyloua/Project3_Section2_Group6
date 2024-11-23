@@ -1,16 +1,32 @@
+
 #pragma once
 // Humidity header file
 #include <string>
+#include <vector>
+#include <chrono>
+#include "raylib.h"
 
-class HumiditySensor {
+class Humidity {
 private:
     double humidityLevel;
+    std::vector<std::string> logEntries;
+    float scrollOffset;
+    const float scrollSpeed;
+    std::chrono::time_point<std::chrono::high_resolution_clock> lastUpdateTime;
 public:
-    HumiditySensor();
+    Humidity();
     void generateRandomHumidity();
-    std::string alertHumidityChange();
-    std::string getCurrentTime();
-    std::string getCurrentDate();
     void logHumidityToFile();
-    ~HumiditySensor();
+    std::string getCurrentDate();
+    std::string getCurrentTime();
+    void drawHumidityLogTable();
+    void handleHumidityPanelClick();
+    void update();
+    void displayWarning();
+    bool showTable;
+    std::string alertHumidityChange();
+    void drawHumidityPanel();
+    std::vector<std::string> readHumidityLog();
+    ~Humidity();
+
 };

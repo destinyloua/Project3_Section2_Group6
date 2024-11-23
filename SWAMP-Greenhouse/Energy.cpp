@@ -142,6 +142,14 @@ bool Energy::isClicked(Rectangle r, int mouseButton)
     return CheckCollisionPointRec(mousePosition, r) && IsMouseButtonPressed(mouseButton);
 }
 
+void Energy::displayWarning()
+{
+    if (watts > 300) {
+        DrawText(TextFormat("WARNING: Power usage TOO HIGH"), 310, 790, 20, RED);
+        DrawText(TextFormat("Reduce Power in Energy Manager"), 310, 810, 20, RED);
+    }
+}
+
 void Energy::drawEnergyButton(Rectangle btn)
 {
     double currentTime = GetTime();

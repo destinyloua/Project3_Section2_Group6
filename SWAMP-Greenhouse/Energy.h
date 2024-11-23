@@ -27,6 +27,7 @@ public:
 
 	bool isClicked(Rectangle r, int mouseButton);
 	bool showEnergyControls = false;
+	void displayWarning();
 	void drawEnergyButton(Rectangle btn); 
 	void hideEnergyControls(); 
 	

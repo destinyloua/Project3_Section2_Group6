@@ -22,11 +22,13 @@ CO2::CO2()
 void CO2::displayWarning()
 {
     if (CO2Value > 1500) {
-        isDanger = true;
+        DrawText(TextFormat("DANGER: CO2 level TOO HIGH"), 310, 740, 20, RED);
+        DrawText(TextFormat("HUMAN HEALTH HAZARD!"), 310, 760, 20, RED);
         //cout << "CO2 Value: " << CO2Value << " ppm, DANGER! Too High! " << endl;
     }
     else if(CO2Value < 1000){
-        isDanger = true;
+        DrawText(TextFormat("DANGER: CO2 level TOO LOW"), 310, 740, 20, RED);
+        DrawText(TextFormat("PLANT HEALTH HAZARD!"), 310, 760, 20, RED);
        //cout << "CO2 Value: " << CO2Value << " ppm, DANGER! Too Low! " << endl;
     }
     else {
