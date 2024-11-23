@@ -53,13 +53,13 @@ void Energy::enableLowPower()
 {
     watts = 250;
     lowPower = true; 
-    cout << "Low Power Mode: ON -- System will maintain " << watts << " watts" << endl;
+    cout << "Enabling Low Power -- System will maintain " << watts << " watts" << endl;
 }
 
 void Energy::disableLowPower()
 {
     lowPower = false; 
-    cout << "Low Power Mode: OFF -- Resuming normal power usage" << endl; 
+    cout << "Disabling Low Power -- Resuming normal power usage" << endl; 
 }
 
 void Energy::showPowerOptions()
@@ -108,7 +108,9 @@ void Energy::showPowerStatus()
     if (lowPower) {
         cout << "Low Power Mode: ON" << endl; 
     }
-    cout << "Low Power Mode: OFF" << endl;
+    else {
+        cout << "Low Power Mode: OFF" << endl;
+    }
 }
 
 void Energy::control()

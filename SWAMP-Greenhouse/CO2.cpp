@@ -24,15 +24,15 @@ void CO2::displayWarning()
     if (CO2Value > 1500) {
         DrawText(TextFormat("DANGER: CO2 level TOO HIGH"), 310, 740, 20, RED);
         DrawText(TextFormat("HUMAN HEALTH HAZARD!"), 310, 760, 20, RED);
-        //cout << "CO2 Value: " << CO2Value << " ppm, DANGER! Too High! " << endl;
+        cout << "CO2 Value: " << CO2Value << " ppm, DANGER! Too High! " << endl;
     }
     else if(CO2Value < 1000){
         DrawText(TextFormat("DANGER: CO2 level TOO LOW"), 310, 740, 20, RED);
         DrawText(TextFormat("PLANT HEALTH HAZARD!"), 310, 760, 20, RED);
-       //cout << "CO2 Value: " << CO2Value << " ppm, DANGER! Too Low! " << endl;
+        cout << "CO2 Value: " << CO2Value << " ppm, DANGER! Too Low! " << endl;
     }
     else {
-        //cout << "CO2 Value: " << CO2Value << " ppm, OK!" << endl;
+        cout << "CO2 Value: " << CO2Value << " ppm, OK!" << endl;
     }
 }
 
@@ -72,16 +72,17 @@ void CO2::simulateCO2Reading()
 {
     while (index < co2History.size()) {
         CO2Value = co2History[index];
-        displayWarning(); 
-        //Sleep(5000); 
+        //cout << CO2Value << ", ";
+        displayWarning();
         index++; 
     }
+    cout << endl;
 }
 
 // not actually controlling, but needed for testing 
 void CO2::control()
 {
-    cout << "CO2 is monitor only...Simulating CO2 instead...(Updates every 5 seconds)" << endl; 
+    cout << "CO2 is monitor only...Simulating CO2 instead..." << endl; 
     simulateCO2Reading(); 
 }
 
