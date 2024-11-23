@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SWAMP-Greenhouse", "SWAMP-Greenhouse\SWAMP-Greenhouse.vcxproj", "{EF5D4F7A-AAE2-4882-B807-B6CAFD60A646}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SWAMP_TESTS", "SWAMP_TESTS\SWAMP_TESTS.vcxproj", "{A82BBE66-B2BC-4B47-BF91-198135DFE002}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{EF5D4F7A-AAE2-4882-B807-B6CAFD60A646}.Release|x64.Build.0 = Release|x64
 		{EF5D4F7A-AAE2-4882-B807-B6CAFD60A646}.Release|x86.ActiveCfg = Release|Win32
 		{EF5D4F7A-AAE2-4882-B807-B6CAFD60A646}.Release|x86.Build.0 = Release|Win32
+		{A82BBE66-B2BC-4B47-BF91-198135DFE002}.Debug|x64.ActiveCfg = Debug|x64
+		{A82BBE66-B2BC-4B47-BF91-198135DFE002}.Debug|x64.Build.0 = Debug|x64
+		{A82BBE66-B2BC-4B47-BF91-198135DFE002}.Debug|x86.ActiveCfg = Debug|Win32
+		{A82BBE66-B2BC-4B47-BF91-198135DFE002}.Debug|x86.Build.0 = Debug|Win32
+		{A82BBE66-B2BC-4B47-BF91-198135DFE002}.Release|x64.ActiveCfg = Release|x64
+		{A82BBE66-B2BC-4B47-BF91-198135DFE002}.Release|x64.Build.0 = Release|x64
+		{A82BBE66-B2BC-4B47-BF91-198135DFE002}.Release|x86.ActiveCfg = Release|Win32
+		{A82BBE66-B2BC-4B47-BF91-198135DFE002}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
