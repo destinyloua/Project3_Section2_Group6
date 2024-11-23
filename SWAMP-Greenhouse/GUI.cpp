@@ -171,6 +171,11 @@ void GUI::DrawPanels(CO2& c, Energy& e, SoilMoisture& s, Humidity& h) {
     if (s.GetData() < s.GetThreshold()) {
         DrawText(TextFormat("SOIL MOISTURE: Below threshold, irrigation on"), 310, 712, 20, RED); // x, y, size, colour
     }
+    // for co2 notifications
+    if (c.isDanger) {
+        c.displayWarning();
+    }
+    e.displayWarning(); 
     // User info
     DrawRectangle(10, 950, 200, 100, WHITE); // x, y, length, height, colour
     DrawText("User: 0000", 15, 955, 20, DARKBLUE); // x, y, size, colour
