@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 // CSCN72030 - Project III
 // Aiden, Destiny, Liam, Tyler
 // The SWAMP 
@@ -21,10 +23,9 @@ int main() {
     Energy e;
     e.readData(); 
     SoilMoisture s;
-
-    // Humidity
-    //HumiditySensor hs;
-    //hs.generateRandomHumidity();
+    Humidity h;
+    Lights l;
+    Temperature t;
 
     const int screenWidth = 1500;
     const int screenHeight = 1000;
@@ -34,6 +35,7 @@ int main() {
     GUI gui;  // Create an instance of GUI
     CameraView camera;  // Create an instance of CameraView
     InputField inputField;
+    InputField thresholdInput;
 
     double lastUpdateTime = GetTime();
 
@@ -53,7 +55,7 @@ int main() {
 
             BeginDrawing();
 
-            gui.UpdateDrawing(c,e,s);  // Draw GUI elements
+            gui.UpdateDrawing(c,e,s,h);  // Draw GUI elements
             camera.CameraDraw();  // Draw camera view
             if (c.showTrendGraph) {
                 DrawTexture(c.trendGraph, 100, 100, WHITE);
@@ -61,6 +63,23 @@ int main() {
             if (e.showEnergyControls) {
                 e.showPowerOptions(); 
             }
+            if (h.showTable) {
+                h.drawHumidityLogTable();
+            }
+            EndDrawing();
+            break;
+        }
+        case LightsPage: {
+            BeginDrawing();
+            ClearBackground(RAYWHITE);
+            gui.DrawLightsScreen(l);
+            EndDrawing();
+            break;
+        }
+        case TemperaturePage: {
+            BeginDrawing(); 
+            ClearBackground(RAYWHITE); 
+            gui.DrawTemperatureScreen(t);
             EndDrawing();
             break;
         }

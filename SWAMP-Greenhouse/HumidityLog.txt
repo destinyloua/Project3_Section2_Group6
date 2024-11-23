@@ -1,3 +1,87 @@
 Date: 2024-11-18 | Time: 13:08:31 | Humidity Level: 78.0847 | Status: Humidity level within range.
 Date: 2024-11-18 | Time: 13:08:46 | Humidity Level: 60.2066 | Status: Humidity level within range.
 Date: 2024-11-18 | Time: 13:09:01 | Humidity Level: 57.2292 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 20:11:06 | Humidity Level: 82.72 | Status: Alert: Humidity level out of range! Too high!
+Date: 2024-11-22 | Time: 20:11:21 | Humidity Level: 79.09 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 20:11:36 | Humidity Level: 73.12 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 20:12:34 | Humidity Level: 5.44 | Status: Alert: Humidity level out of range! Too low!
+Date: 2024-11-22 | Time: 20:12:49 | Humidity Level: 70.1 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 20:17:25 | Humidity Level: 55.44 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 20:17:40 | Humidity Level: 79.09 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 20:17:55 | Humidity Level: 73.57 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 20:18:10 | Humidity Level: 43.71 | Status: Alert: Humidity level out of range! Too low!
+Date: 2024-11-22 | Time: 20:25:53 | Humidity Level: 94.06 | Status: Alert: Humidity level out of range! Too high!
+Date: 2024-11-22 | Time: 20:26:08 | Humidity Level: 32.41 | Status: Alert: Humidity level out of range! Too low!
+Date: 2024-11-22 | Time: 20:26:23 | Humidity Level: 97.4 | Status: Alert: Humidity level out of range! Too high!
+Date: 2024-11-22 | Time: 20:26:38 | Humidity Level: 78.24 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 20:26:53 | Humidity Level: 64.97 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 20:27:08 | Humidity Level: 70.25 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 20:27:23 | Humidity Level: 71.12 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 20:27:38 | Humidity Level: 44.46 | Status: Alert: Humidity level out of range! Too low!
+Date: 2024-11-22 | Time: 20:27:53 | Humidity Level: 50.37 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 20:28:08 | Humidity Level: 56.47 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 20:29:14 | Humidity Level: 72.33 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 20:29:29 | Humidity Level: 68.8 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 20:29:44 | Humidity Level: 5.57 | Status: Alert: Humidity level out of range! Too low!
+Date: 2024-11-22 | Time: 20:29:59 | Humidity Level: 54.58 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 23:44:01 | Humidity Level: 57.78 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 23:44:16 | Humidity Level: 50.67 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 23:44:48 | Humidity Level: 86.43 | Status: Alert: Humidity level out of range! Too high!
+Date: 2024-11-22 | Time: 23:45:03 | Humidity Level: 50.76 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 23:45:18 | Humidity Level: 69.84 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 23:49:18 | Humidity Level: 90.36 | Status: Alert: Humidity level out of range! Too high!
+Date: 2024-11-22 | Time: 23:49:33 | Humidity Level: 50.44 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 23:49:43 | Humidity Level: 63.22 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 23:49:58 | Humidity Level: 55.15 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 23:50:08 | Humidity Level: 69.23 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 23:50:23 | Humidity Level: 65.91 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 23:50:29 | Humidity Level: 65.88 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 23:50:44 | Humidity Level: 78.56 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 23:50:52 | Humidity Level: 95.28 | Status: Alert: Humidity level out of range! Too high!
+Date: 2024-11-22 | Time: 23:51:07 | Humidity Level: 68.11 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 23:51:20 | Humidity Level: 80.58 | Status: Alert: Humidity level out of range! Too high!
+Date: 2024-11-22 | Time: 23:51:31 | Humidity Level: 75.99 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 23:51:46 | Humidity Level: 64.45 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 23:52:24 | Humidity Level: 98.4 | Status: Alert: Humidity level out of range! Too high!
+Date: 2024-11-22 | Time: 23:52:39 | Humidity Level: 66.89 | Status: Humidity level within range.
+Date: 2024-11-22 | Time: 23:52:54 | Humidity Level: 3.36 | Status: Alert: Humidity level out of range! Too low!
+Date: 2024-11-23 | Time: 00:00:07 | Humidity Level: 86.68 | Status: Alert: Humidity level out of range! Too high!
+Date: 2024-11-23 | Time: 00:00:22 | Humidity Level: 59.13 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:00:37 | Humidity Level: 78.57 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:00:44 | Humidity Level: 57.76 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:00:59 | Humidity Level: 55.37 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:01:15 | Humidity Level: 62.82 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:01:30 | Humidity Level: 60.34 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:01:45 | Humidity Level: 54.8 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:02:00 | Humidity Level: 68.97 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:02:17 | Humidity Level: 72.93 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:02:32 | Humidity Level: 76.24 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:02:47 | Humidity Level: 67.69 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:03:02 | Humidity Level: 52.81 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:03:17 | Humidity Level: 59.72 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:03:32 | Humidity Level: 60.96 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:03:47 | Humidity Level: 78.53 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:03:58 | Humidity Level: 76.81 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:04:11 | Humidity Level: 17.44 | Status: Alert: Humidity level out of range! Too low!
+Date: 2024-11-23 | Time: 00:04:26 | Humidity Level: 53.29 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:05:53 | Humidity Level: 68.46 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:06:08 | Humidity Level: 64.85 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:06:31 | Humidity Level: 52.4 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:06:46 | Humidity Level: 62.01 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:07:01 | Humidity Level: 50.83 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:07:22 | Humidity Level: 74.27 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:07:37 | Humidity Level: 71.87 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:07:52 | Humidity Level: 76.03 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:08:04 | Humidity Level: 67.56 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:08:19 | Humidity Level: 70.86 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:08:34 | Humidity Level: 12.73 | Status: Alert: Humidity level out of range! Too low!
+Date: 2024-11-23 | Time: 00:08:39 | Humidity Level: 51.98 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:08:54 | Humidity Level: 61.93 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:09:09 | Humidity Level: 60.99 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:09:24 | Humidity Level: 79.06 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:09:34 | Humidity Level: 53.21 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:09:49 | Humidity Level: 38.33 | Status: Alert: Humidity level out of range! Too low!
+Date: 2024-11-23 | Time: 00:10:04 | Humidity Level: 74.25 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:10:19 | Humidity Level: 86.65 | Status: Alert: Humidity level out of range! Too high!
+Date: 2024-11-23 | Time: 00:10:42 | Humidity Level: 62.36 | Status: Humidity level within range.
+Date: 2024-11-23 | Time: 00:10:57 | Humidity Level: 71.7 | Status: Humidity level within range.
