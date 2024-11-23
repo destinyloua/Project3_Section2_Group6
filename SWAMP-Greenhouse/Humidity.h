@@ -22,6 +22,7 @@ public:
     void drawHumidityLogTable();
     void handleHumidityPanelClick();
     void update();
+    void displayWarning();
     bool showTable;
     std::string alertHumidityChange();
     void drawHumidityPanel();

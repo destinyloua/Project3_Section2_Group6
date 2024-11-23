@@ -66,6 +66,17 @@ std::string Humidity::alertHumidityChange() {
     return "Humidity level within range.";
 }
 
+void Humidity::displayWarning() {
+    if (humidityLevel < 50.0) {
+        DrawText("Alert: Humidity level TOO LOW!", 310, 830, 20, RED);
+        DrawText("PLANT HEALTH HAZARD!", 310, 850, 20, RED);
+    }
+    else if (humidityLevel > 80.0) {
+        DrawText("Alert: Humidity level TOO HIGH", 310, 830, 20, RED);
+        DrawText("PLANT HEALTH HAZARD!", 310, 850, 20, RED);
+    }
+}
+
 // Get the current date as a string
 std::string Humidity::getCurrentDate() {
     auto now = std::chrono::system_clock::now();
@@ -123,34 +134,6 @@ std::vector<std::string> Humidity::readHumidityLog() {
 }
 
 // Draw the humidity panel with current humidity level
-//void Humidity::drawHumidityPanel(Color darkOrange) {
-//    Color panelColor = ORANGE;
-//    if (humidityLevel < 50.0 || humidityLevel > 80.0) {
-//        panelColor = RED;
-//    }
-//
-//    Vector2 mousePosition = GetMousePosition();
-//    Rectangle panelRect = { 850, 450, 600, 100 };
-//
-//    if (CheckCollisionPointRec(mousePosition, panelRect)) {
-//        panelColor = darkOrange;
-//        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-//            handleHumidityPanelClick();
-//        }
-//    }
-//
-//    DrawRectangleRec(panelRect, panelColor);
-//    DrawText("Humidity", 860, 460, 40, BLACK);
-//
-//    std::ostringstream oss;
-//    oss << std::fixed << std::setprecision(2) << humidityLevel << "%";
-//    std::string humidityText = oss.str();
-//    DrawText(humidityText.c_str(), 860, 510, 30, BLACK);
-//
-//    if (showTable) {
-//        drawHumidityLogTable();
-//    }
-//}
 void Humidity::drawHumidityPanel() {
     Color panelColor = ORANGE; // Default panel color
     if (humidityLevel < 50.0 || humidityLevel > 80.0) {

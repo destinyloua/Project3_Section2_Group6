@@ -176,6 +176,7 @@ void GUI::DrawPanels(CO2& c, Energy& e, SoilMoisture& s, Humidity& h) {
         c.displayWarning();
     }
     e.displayWarning(); 
+    h.displayWarning();
     // User info
     DrawRectangle(10, 950, 200, 100, WHITE); // x, y, length, height, colour
     DrawText("User: 0000", 15, 955, 20, DARKBLUE); // x, y, size, colour
