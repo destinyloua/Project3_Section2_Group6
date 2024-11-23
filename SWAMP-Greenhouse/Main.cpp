@@ -15,7 +15,7 @@
 using namespace std;
 
 int main() {
-    // create CO2 device
+    // create devices
     CO2 c;
     c.readData(); 
     Energy e;
