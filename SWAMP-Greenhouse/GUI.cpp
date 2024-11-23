@@ -142,30 +142,46 @@ void GUI::DrawPanels(CO2& c, Energy& e, SoilMoisture& s, Humidity& h) {
 
     // Soil Moisture
     Rectangle soilButton = { 850,570,600,100 };
-    if (CheckCollisionPointRec(GetMousePosition(), soilButton)) {
-        DrawRectangleRec(soilButton, DARKBROWN);
-        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-            s.SetIrrigationStatus();
-        }
-    }
-    else
-    {
-        DrawRectangleRec(soilButton, BROWN);
-    }
-    DrawText("Soil Moisture", 860, 580, 40, BLACK); // x, y, size, colour
+    DrawRectangleRec(soilButton, BROWN);
+    Rectangle irrigationSwitch = { 1128,580,300,40 };
     if (s.GetIrrigation()) {
-        DrawText("Irrigation On", 1142, 580, 40, GREEN); // x, y, size, colour
+        DrawRectangleRec(irrigationSwitch, GREEN);
     }
     else {
-        DrawText("Irrigation Off", 1142, 580, 40, RED); // x, y, size, colour
+        DrawRectangleRec(irrigationSwitch, RED);
     }
-    if (s.GetData()>30) {
+    DrawText("Irrigation System", 1150, 590, 30, BLACK);
+    DrawText("Soil Moisture", 860, 580, 40, BLACK); // x, y, size, colour
+    //if (s.GetIrrigation()) {
+    //    DrawText("Irrigation On", 1142, 580, 40, GREEN); // x, y, size, colour
+    //}
+    //else {
+    //    DrawText("Irrigation Off", 1142, 580, 40, RED); // x, y, size, colour
+    //}
+    if (s.GetData()>s.GetThreshold()) {
         DrawText(TextFormat("Current: %.2f%%", s.GetData()), 860, 623, 30, BLACK); // x, y, size, colour
     }
     else
     {
         DrawText(TextFormat("Current: %.2f%%", s.GetData()), 860, 623, 30, RED); // x, y, size, colour
     }
+    if (CheckCollisionPointRec(GetMousePosition(), irrigationSwitch) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        s.SetIrrigationStatus();
+    }
+    Rectangle upButton = { 1366 ,628,30,30 };
+    Rectangle downButton = { 1406 ,628,30,30 };
+    DrawRectangleRec(upButton, WHITE);
+    DrawRectangleRec(downButton, WHITE);
+    DrawText("U", 1371, 630, 30, BLACK);
+    DrawText("D", 1411, 630, 30, BLACK);
+    if (CheckCollisionPointRec(GetMousePosition(), upButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        s.IncreaseThreshold();
+    }
+    if (CheckCollisionPointRec(GetMousePosition(), downButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        s.DecreaseThreshold();
+    }
+
+    DrawText(TextFormat("Thrhd: %.2f%%", s.GetThreshold()), 1128, 623, 30, BLACK);
 
     // Energy
     Rectangle energyButton = { 850, 690, 600, 100 };

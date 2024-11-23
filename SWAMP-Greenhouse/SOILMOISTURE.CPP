@@ -37,7 +37,7 @@ void SoilMoisture::readData()
 
 void SoilMoisture::control()
 {
-	if (soilMoistureLevel < 30) {
+	if (soilMoistureLevel < threshold) {
 		this->irrigation = true;
 	}
 }
@@ -47,9 +47,13 @@ double SoilMoisture::GetThreshold()
 	return threshold;
 }
 
-void SoilMoisture::SetThreshold(int value)
+void SoilMoisture::IncreaseThreshold()
 {
-	this->threshold = value;
+	this->threshold++;
+}
+void SoilMoisture::DecreaseThreshold()
+{
+	this->threshold--;
 }
 
 double SoilMoisture::GetData()
