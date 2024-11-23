@@ -24,6 +24,8 @@ int main() {
     e.readData(); 
     SoilMoisture s;
     Humidity h;
+    Lights l;
+    Temperature t;
 
     const int screenWidth = 1500;
     const int screenHeight = 1000;
@@ -64,6 +66,20 @@ int main() {
             if (h.showTable) {
                 h.drawHumidityLogTable();
             }
+            EndDrawing();
+            break;
+        }
+        case LightsPage: {
+            BeginDrawing();
+            ClearBackground(RAYWHITE);
+            gui.DrawLightsScreen(l);
+            EndDrawing();
+            break;
+        }
+        case TemperaturePage: {
+            BeginDrawing(); 
+            ClearBackground(RAYWHITE); 
+            gui.DrawTemperatureScreen(t);
             EndDrawing();
             break;
         }
