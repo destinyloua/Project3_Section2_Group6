@@ -33,6 +33,7 @@ int main() {
     GUI gui;  // Create an instance of GUI
     CameraView camera;  // Create an instance of CameraView
     InputField inputField;
+    InputField thresholdInput;
 
     double lastUpdateTime = GetTime();
 
@@ -48,7 +49,6 @@ int main() {
             break;
         }
         case MainPage: {
-            InputField thresholdInput;
             camera.CameraUpdate();  // Update camera
 
             BeginDrawing();

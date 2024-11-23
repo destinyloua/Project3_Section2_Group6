@@ -13,7 +13,8 @@ public:
 	void readData() override;
 	void control() override;
 	double GetThreshold();
-	void SetThreshold(int value);
+	void IncreaseThreshold();
+	void DecreaseThreshold();
 	double GetData();
 	void SetIrrigationStatus();
 	bool GetIrrigation();
