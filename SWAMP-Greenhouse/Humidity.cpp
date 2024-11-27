@@ -197,4 +197,14 @@ void Humidity::drawHumidityLogTable() {
     }
 }
 
+// Added for testing
+double Humidity::getHumidityLevel() {
+    return humidityLevel;
+}
+
+void Humidity::setHumidityLevel(double level) {
+    humidityLevel = level;
+}
+
+
 Humidity::~Humidity() {}

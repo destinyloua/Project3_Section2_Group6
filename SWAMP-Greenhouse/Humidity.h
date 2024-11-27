@@ -15,6 +15,8 @@ private:
     std::chrono::time_point<std::chrono::high_resolution_clock> lastUpdateTime;
 public:
     Humidity();
+    double getHumidityLevel();
+    void setHumidityLevel(double level);
     void generateRandomHumidity();
     void logHumidityToFile();
     std::string getCurrentDate();
