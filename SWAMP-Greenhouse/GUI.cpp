@@ -206,7 +206,12 @@ void GUI::DrawPanels(CO2& c, Energy& e, SoilMoisture& s, Humidity& h) {
     if (c.isDanger) {
         c.displayWarning();
     }
-    e.displayWarning(); 
+
+    // for energy notification
+    if (e.tooMuchPower) {
+        e.displayWarning();
+    }
+
     h.displayWarning();
     // User info
     DrawRectangle(10, 950, 200, 100, WHITE); // x, y, length, height, colour
