@@ -1,8 +1,8 @@
 #include "CppUnitTest.h"
 #include <fstream>
 #include "../SWAMP-Greenhouse/CO2.h"
-
-
+#include "../SWAMP-Greenhouse/Humidity.h"
+#include "../SWAMP-Greenhouse/Energy.h"
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace SWAMPTESTS
@@ -118,6 +118,7 @@ namespace SWAMPTESTS
 		}
 	};
 
+	// Humidity Tests Liam
 	TEST_CLASS(HumidityUnitTests)
 	{
 	public:
@@ -125,7 +126,7 @@ namespace SWAMPTESTS
 		TEST_METHOD(Unit_Test_Hum_001_RandomHumidity)
 		{
 			Humidity h;
-			for (int i = 0; i > 100; ++i) {
+			for (int i = 0; i < 100; ++i) {
 				h.generateRandomHumidity();
 				double humidityLevel = h.getHumidityLevel();
 				Assert::IsTrue((humidityLevel < 50) || (humidityLevel > 80) || ((humidityLevel >= 50) && (humidityLevel <= 80)));
