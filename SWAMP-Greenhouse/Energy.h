@@ -16,6 +16,9 @@ class Energy: public Device
 
 public:
 	Energy();
+	void setWatts(double watts);
+	void addToEnergyHistory(double value); 
+	double getCurrentWatts(int index);
 	void readData() override;
 	void enableLowPower(); 
 	void disableLowPower(); 
@@ -24,6 +27,8 @@ public:
 	void control() override;
 	void setLastUpdateTime(double newTime);
 	void setTooMuchPower();
+	bool getPower();
+	bool getLowPowerStatus();
 
 	bool isClicked(Rectangle r, int mouseButton);
 	bool showEnergyControls = false;

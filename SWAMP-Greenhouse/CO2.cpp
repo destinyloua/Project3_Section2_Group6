@@ -13,9 +13,38 @@ CO2::CO2()
     isActive = true; 
 	CO2Value = 0.0;
 	isDanger = false; 
+    warning = "";
 	fileName = "CO2Data.txt"; // name of simulation data file 
+    co2History = {};
     index = 0; 
     lastUpdateTime = 0.0; 
+}
+
+void CO2::setWarning(string warning)
+{
+    this->warning = warning;
+}
+
+string CO2::getWarning(double CO2Value)
+{
+    if (CO2Value > 1500) {
+        setWarning("CO2 Value: " + to_string(CO2Value) + " ppm, DANGER! Too High! ");
+    }
+    
+    else if (CO2Value < 1000) {
+        setWarning("CO2 Value: " + to_string(CO2Value) + " ppm, DANGER! Too Low! ");
+    }
+
+    else {
+        setWarning("CO2 Value: " + to_string(CO2Value) + " ppm, OK! ");
+    }
+
+    return warning;
+}
+
+int CO2::getIndex()
+{
+    return index;
 }
 
 // display DANGER if value outside of threshold otherwise OK
@@ -24,16 +53,21 @@ void CO2::displayWarning()
     if (CO2Value > 1500) {
         DrawText(TextFormat("DANGER: CO2 level TOO HIGH"), 310, 740, 20, RED);
         DrawText(TextFormat("HUMAN HEALTH HAZARD!"), 310, 760, 20, RED);
-        cout << "CO2 Value: " << CO2Value << " ppm, DANGER! Too High! " << endl;
+        //cout << getWarning(CO2Value) << endl;
     }
     else if(CO2Value < 1000){
         DrawText(TextFormat("DANGER: CO2 level TOO LOW"), 310, 740, 20, RED);
         DrawText(TextFormat("PLANT HEALTH HAZARD!"), 310, 760, 20, RED);
-        cout << "CO2 Value: " << CO2Value << " ppm, DANGER! Too Low! " << endl;
+       //cout << getWarning(CO2Value) << endl;
     }
     else {
-        cout << "CO2 Value: " << CO2Value << " ppm, OK!" << endl;
+        //cout << getWarning(CO2Value) << endl;
     }
+}
+
+void CO2::addToCO2History(double value)
+{
+    co2History.push_back(value);
 }
 
 // open file to read simulation data - add each value to vector for trend graph later 
@@ -60,20 +94,19 @@ void CO2::readData()
 
     // update CO2Value from data file 
     CO2Value = value;
-    co2History.push_back(CO2Value); // add value to co2History vector 
+    addToCO2History(value);
     }
 
     // verify data reading successful 
-    //cout << "All CO2 data read successfully" << endl;
+    cout << "All CO2 data read successfully" << endl;
 }
 
-// CO2 is monitor only - simulate data updating every 5 seconds as stated in requirements 
+// CO2 is monitor only - simulate data updating every 60 seconds as stated in requirements 
 void CO2::simulateCO2Reading()
 {
     while (index < co2History.size()) {
         CO2Value = co2History[index];
-        //cout << CO2Value << ", ";
-        displayWarning();
+        cout << getWarning(CO2Value) << endl;
         index++; 
     }
     cout << endl;
@@ -101,6 +134,26 @@ void CO2::setDanger()
     }
 }
 
+void CO2::updateCO2Value(double currentTime)
+{
+    if (currentTime - lastUpdateTime >= 60.0) {
+        CO2Value = co2History[index++];
+        setDanger();
+        cout << "CO2 value updated" << endl;
+        setLastUpdateTime(currentTime);
+    }
+}
+
+vector<double>& CO2::getCO2History()
+{
+    return co2History;
+}
+
+double CO2::getCurrentCO2(int index)
+{
+    return co2History[index];
+}
+
 bool CO2::isClicked(Rectangle r, int mouseButton)
 {
     Vector2 mousePosition = GetMousePosition();
@@ -113,13 +166,7 @@ void CO2::drawCO2Button(Rectangle btn)
     double currentTime = GetTime();
   
     if (index < co2History.size()) {
-        // TESTING with 5 seconds -- change to 60 seconds later
-        if (currentTime - lastUpdateTime >= 50.0) {
-            CO2Value = co2History[index++];
-            setDanger(); 
-            cout << "CO2 value updated" << endl;    
-            setLastUpdateTime(currentTime);
-        }   
+        updateCO2Value(currentTime);
     }
     else {
         // reset the data loop

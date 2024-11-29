@@ -77,6 +77,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Users\ddlou\source\repos\SWAMP-Greenhouse\SWAMP-Greenhouse\x64;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -99,7 +100,8 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\ddlou\source\repos\SWAMP-Greenhouse\SWAMP-Greenhouse\x64\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>"C:\Users\ddlou\source\repos\SWAMP-Greenhouse\SWAMP-Greenhouse\x64\Debug\CO2.obj";"C:\Users\ddlou\source\repos\SWAMP-Greenhouse\SWAMP-Greenhouse\x64\Debug\Device.obj";"C:\Users\ddlou\source\repos\SWAMP-Greenhouse\SWAMP-Greenhouse\x64\Debug\Energy.obj";%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -156,7 +158,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\SWAMP-Greenhouse\Humidity.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -166,7 +167,6 @@
     <ClCompile Include="SWAMP_TESTS.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\SWAMP-Greenhouse\Humidity.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
@@ -174,7 +174,20 @@
       <Project>{ef5d4f7a-aae2-4882-b807-b6cafd60a646}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\SWAMP-Greenhouse\EnergyData.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\raylib.5.0.0\build\native\raylib.targets" Condition="Exists('..\packages\raylib.5.0.0\build\native\raylib.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\raylib.5.0.0\build\native\raylib.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\raylib.5.0.0\build\native\raylib.targets'))" />
+  </Target>
 </Project>

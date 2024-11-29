@@ -19,6 +19,21 @@ Energy::Energy()
     lastUpdateTime = 0.0;
 }
 
+void Energy::setWatts(double watts)
+{
+    this->watts = watts;
+}
+
+void Energy::addToEnergyHistory(double value)
+{
+    energyHistory.push_back(value);
+}
+
+double Energy::getCurrentWatts(int index)
+{
+    return energyHistory[index];
+}
+
 void Energy::readData()
 {
     // open file 
@@ -41,8 +56,7 @@ void Energy::readData()
         }
 
         watts = value;
-        energyHistory.push_back(watts);
-
+        addToEnergyHistory(value);
     }
 
     // verify data reading successful 
@@ -131,10 +145,21 @@ void Energy::setTooMuchPower()
 {
     if (watts > 300) {
         tooMuchPower = true;
+        cout << "Energy prompt displayed" << endl;
     }
     else {
         tooMuchPower = false;
     }
+}
+
+bool Energy::getPower()
+{
+    return tooMuchPower;
+}
+
+bool Energy::getLowPowerStatus()
+{
+    return lowPower;
 }
 
 bool Energy::isClicked(Rectangle r, int mouseButton)
@@ -146,10 +171,8 @@ bool Energy::isClicked(Rectangle r, int mouseButton)
 
 void Energy::displayWarning()
 {
-    if (watts > 300) {
-        DrawText(TextFormat("WARNING: Power usage TOO HIGH"), 310, 790, 20, RED);
-        DrawText(TextFormat("Reduce Power in Energy Manager"), 310, 810, 20, RED);
-    }
+     DrawText(TextFormat("WARNING: Power usage TOO HIGH"), 310, 790, 20, RED);
+     DrawText(TextFormat("Reduce Power in Energy Manager"), 310, 810, 20, RED);  
 }
 
 void Energy::drawEnergyButton(Rectangle btn)
@@ -157,7 +180,7 @@ void Energy::drawEnergyButton(Rectangle btn)
     double currentTime = GetTime();
 
     if (index < energyHistory.size()) {
-        if (currentTime - lastUpdateTime >= 30.0) {
+        if (currentTime - lastUpdateTime >= 5.0) {
             watts = energyHistory[index++];
             if (lowPower) {
                 watts = 250.00;
