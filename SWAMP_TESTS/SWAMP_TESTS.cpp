@@ -1,6 +1,8 @@
 #include "CppUnitTest.h"
 #include <fstream>
 #include "../SWAMP-Greenhouse/CO2.h"
+#include "../SWAMP-Greenhouse/Energy.h"
+#include "../SWAMP-Greenhouse/Humidity.h"
 
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;

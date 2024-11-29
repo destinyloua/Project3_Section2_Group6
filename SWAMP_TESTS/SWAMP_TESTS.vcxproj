@@ -77,7 +77,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\ddlou\source\repos\SWAMP-Greenhouse\SWAMP-Greenhouse\x64;$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -100,8 +100,8 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>C:\Users\ddlou\source\repos\SWAMP-Greenhouse\SWAMP-Greenhouse\x64\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>"C:\Users\ddlou\source\repos\SWAMP-Greenhouse\SWAMP-Greenhouse\x64\Debug\CO2.obj";"C:\Users\ddlou\source\repos\SWAMP-Greenhouse\SWAMP-Greenhouse\x64\Debug\Device.obj";"C:\Users\ddlou\source\repos\SWAMP-Greenhouse\SWAMP-Greenhouse\x64\Debug\Energy.obj";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -158,16 +158,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="..\SWAMP-Greenhouse\CO2.cpp" />
+    <ClCompile Include="..\SWAMP-Greenhouse\Device.cpp" />
+    <ClCompile Include="..\SWAMP-Greenhouse\Energy.cpp" />
+    <ClCompile Include="..\SWAMP-Greenhouse\Humidity.cpp" />
+    <ClCompile Include="..\SWAMP-Greenhouse\Lights.cpp" />
+    <ClCompile Include="..\SWAMP-Greenhouse\SOILMOISTURE.CPP" />
+    <ClCompile Include="..\SWAMP-Greenhouse\User.cpp" />
     <ClCompile Include="SWAMP_TESTS.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h" />
+    <ClInclude Include="..\SWAMP-Greenhouse\Camera.h" />
+    <ClInclude Include="..\SWAMP-Greenhouse\CO2.h" />
+    <ClInclude Include="..\SWAMP-Greenhouse\Device.h" />
+    <ClInclude Include="..\SWAMP-Greenhouse\Energy.h" />
+    <ClInclude Include="..\SWAMP-Greenhouse\Humidity.h" />
+    <ClInclude Include="..\SWAMP-Greenhouse\Lights.h" />
+    <ClInclude Include="..\SWAMP-Greenhouse\User.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SWAMP-Greenhouse\SWAMP-Greenhouse.vcxproj">

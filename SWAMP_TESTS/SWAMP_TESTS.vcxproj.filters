@@ -18,16 +18,55 @@
     <ClCompile Include="SWAMP_TESTS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="..\SWAMP-Greenhouse\CO2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SWAMP-Greenhouse\Device.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SWAMP-Greenhouse\Energy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\SWAMP-Greenhouse\Humidity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\SWAMP-Greenhouse\Lights.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SWAMP-Greenhouse\SOILMOISTURE.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SWAMP-Greenhouse\User.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h">
+    <ClInclude Include="..\SWAMP-Greenhouse\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\SWAMP-Greenhouse\CO2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SWAMP-Greenhouse\Device.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SWAMP-Greenhouse\Energy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SWAMP-Greenhouse\Humidity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SWAMP-Greenhouse\Lights.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SWAMP-Greenhouse\User.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\SWAMP-Greenhouse\EnergyData.txt" />
   </ItemGroup>
 </Project>
