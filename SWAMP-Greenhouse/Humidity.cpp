@@ -152,12 +152,12 @@ void Humidity::drawHumidityPanel() {
     }
 
     DrawRectangleRec(panelRect, panelColor);
-    DrawText("Humidity", 860, 460, 40, BLACK); // Original font size for "Humidity"
+    DrawText("Humidity", 860, 460, 40, BLACK);
 
     std::ostringstream oss;
     oss << std::fixed << std::setprecision(2) << humidityLevel << "%";
     std::string humidityText = oss.str();
-    DrawText(humidityText.c_str(), 860, 510, 30, BLACK); // Original font size for value
+    DrawText(humidityText.c_str(), 860, 510, 30, BLACK);
 
     if (showTable) {
         drawHumidityLogTable(); // Draw the log table if flag is true
@@ -173,24 +173,50 @@ void Humidity::handleHumidityPanelClick() {
 
 // Draw the humidity log table
 void Humidity::drawHumidityLogTable() {
-    scrollOffset -= GetMouseWheelMove() * scrollSpeed;
-    DrawRectangle(0, 0, 1500, 1000, LIGHTGRAY);
-    DrawText("Humidity Log:", 100, 50, 40, BLACK);
-    DrawText("Minimum: 50%, Maximum: 80%, Average: 60-70%", 100, 100, 40, BLACK);
-
-
-    int startX = 100;
-    int startY = 150 + scrollOffset;
+    // Define the height of each line
     int lineHeight = 30;
+    int headerHeight = 200; 
 
-    for (size_t i = 0; i < logEntries.size(); i++) {
-        DrawText(logEntries[i].c_str(), startX, startY + (i * lineHeight), 25, BLACK);
+    // Calculate the total height of the content
+    int contentHeight = headerHeight + logEntries.size() * lineHeight;
+    int visibleHeight = 1000;
+    float maxScrollOffset = contentHeight > visibleHeight ? contentHeight - visibleHeight : 0;
+
+    // Update the scroll offset based on mouse wheel input
+    scrollOffset -= GetMouseWheelMove() * scrollSpeed;
+
+    // Clamp the scroll offset to the valid range
+    if (scrollOffset < 0) {
+        scrollOffset = 0;
+    }
+    else if (scrollOffset > maxScrollOffset) {
+        scrollOffset = maxScrollOffset;
     }
 
+    // Draw the background
+    DrawRectangle(0, 0, 1500, visibleHeight, LIGHTGRAY);
+
+    // Starting position for the entire content (header + log entries)
+    int startX = 100;
+    int startY = -scrollOffset;
+
+    // Draw the header at different positions
+    DrawText("Humidity Log:", 100, startY + 50, 40, BLACK);
+    DrawText("Minimum: 50%, Maximum: 80%, Average: 60-70%", 100, startY + 100, 40, BLACK);
+
+    // Starting position for the log entries (below the header)
+    int logStartX = 100; 
+    int logStartY = startY + headerHeight; 
+    for (size_t i = 0; i < logEntries.size(); i++) {
+        DrawText(logEntries[i].c_str(), logStartX, logStartY + (i * lineHeight), 25, BLACK);
+    }
+
+    // Draw the back button
     Rectangle backButton = { 1500 - 110, 10, 100, 40 };
     DrawRectangleRec(backButton, DARKGRAY);
     DrawText("Back", backButton.x + 10, backButton.y + 10, 25, RAYWHITE);
 
+    // Check for back button click
     Vector2 mousePosition = GetMousePosition();
     if (CheckCollisionPointRec(mousePosition, backButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         showTable = false;
