@@ -262,9 +262,12 @@ void GUI::DrawLightsScreen(Lights& l) {
             timeAccumulator = 0.0f;
         }
 
-        // Schedule logic: Turn lights on/off based on start/stop time
-        if (l.startTime >= simulatedTime && l.stopTime > simulatedTime  ) {
+        if ((l.startTime <= simulatedTime && simulatedTime < l.stopTime) ||
+            (l.startTime > l.stopTime && (simulatedTime >= l.startTime || simulatedTime < l.stopTime))) {
             l.setLightSwitch(true);
+        }
+        else if (l.stopTime == simulatedTime) {
+            l.setLightSwitch(false);
         }
 
         // Display simulated time
