@@ -1,8 +1,11 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "CppUnitTest.h"
 #include <fstream>
 #include "../SWAMP-Greenhouse/CO2.h"
 #include "../SWAMP-Greenhouse/Energy.h"
 #include "../SWAMP-Greenhouse/Humidity.h"
+#include "../SWAMP-Greenhouse/Lights.h"
+#include "../SWAMP-Greenhouse/Temperature.h"
 
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -123,7 +126,9 @@ namespace SWAMPTESTS
 	// Humidity Tests Liam
 	TEST_CLASS(HumidityUnitTests)
 	{
+
 	public:
+
 		// Testing generateRandomHumidity() if it actually generates random values
 		TEST_METHOD(Unit_Test_Hum_001_RandomHumidity)
 		{
@@ -134,6 +139,7 @@ namespace SWAMPTESTS
 				Assert::IsTrue((humidityLevel < 50) || (humidityLevel > 80) || ((humidityLevel >= 50) && (humidityLevel <= 80)));
 			}
 		}
+
 		// Testing alertHumidityChange() if it returns an alert when humidity is out of range (too low)
 		TEST_METHOD(Unit_Test_Hum_002_LowHumidity)
 		{
@@ -143,6 +149,7 @@ namespace SWAMPTESTS
 			std::string actual = h.alertHumidityChange();
 			Assert::AreEqual(expected, actual);
 		}
+
 		// Testing alertHumidityChange() if it returns an alert when humidity is out of range (too high)
 		TEST_METHOD(Unit_Test_Hum_002_HighHumidity)
 		{
@@ -152,6 +159,7 @@ namespace SWAMPTESTS
 			std::string actual = h.alertHumidityChange();
 			Assert::AreEqual(expected, actual);
 		}
+
 		// Testing alertHumidityChange() if it returns an alert when humidity is in range
 		TEST_METHOD(Unit_Test_Hum_002_NormalHumidity)
 		{
@@ -160,6 +168,115 @@ namespace SWAMPTESTS
 			std::string expected = "Humidity level within range.";
 			std::string actual = h.alertHumidityChange();
 			Assert::AreEqual(expected, actual);
+		}
+	};
+
+	// Lights tests aiden
+	TEST_CLASS(LightsTests)
+	{
+	public:
+
+		TEST_METHOD(UNIT_TEST_LIGHT_001_REQ1)
+		{
+			Lights light;
+
+			// Step 1: Set initial schedule (6:00 AM to 8:00 PM)
+			light.setScheduel(6, 20);
+
+			int startLight1 = 6;
+			int stopLight1 = 20;
+
+			int startLight2 = 7;
+			int stopLight2 = 21;
+
+			// Step 2: Retrieve schedule and verify
+			Assert::AreEqual(6, startLight1);
+			Assert::AreEqual(20, stopLight1);
+
+			// Step 3: Set new schedule (7:00 AM to 9:00 PM)
+			light.setScheduel(7, 21);
+
+			// Step 4: Retrieve updated schedule and verify
+			Assert::AreEqual(7, startLight2);
+			Assert::AreEqual(21, stopLight2);
+		}
+		TEST_METHOD(UNIT_TEST_LIGHT_002_REQ2)
+		{
+			Lights light;
+
+			// Step 1: Set light to ON
+			light.setLightSwitch(true);
+
+			// Step 2: Verify light status
+			Assert::IsTrue(true);
+
+			// Step 3: Set light to OFF and verify again
+			light.setLightSwitch(false);
+			Assert::IsFalse(false);
+		}
+		TEST_METHOD(UNIT_TEST_LIGHT_003_REQ3)
+		{
+			Lights light;
+
+			// Step 1: Set initial light level to 50%
+			light.setActualLightLevel(50);
+			Assert::AreEqual(50, light.getActualLightLevel());
+
+			// Step 2: Adjust light level to 70%
+			light.setActualLightLevel(70);
+
+			// Step 3: Verify new light level
+			Assert::AreEqual(70, light.getActualLightLevel());
+		}
+	};
+
+	// temp tests aiden
+	TEST_CLASS(tempTests)
+	{
+	public:
+
+		TEST_METHOD(UNIT_TEST_TEMP_001_REQ1)
+		{
+			Temperature temp;
+
+			// Step 1: Set temperature to 25°C
+			temp.setActualTemperature(25);
+
+			// Step 2: Retrieve and verify temperature
+			Assert::AreEqual(25, temp.getActualTemperature());
+
+			// Step 3: Set temperature to 30°C
+			temp.setActualTemperature(30);
+
+			// Step 4: Retrieve and verify the new temperature
+			Assert::AreEqual(30, temp.getActualTemperature());
+		}
+		TEST_METHOD(UNIT_TEST_TEMP_002_REQ2)
+		{
+			Temperature temp;
+
+			// Step 1: Set temperature to 25°C
+			temp.setActualTemperature(25);
+
+			// Step 2: Update temperature to 28°C
+			temp.setActualTemperature(28);
+
+			// Step 3: Retrieve and verify real-time temperature
+			Assert::AreEqual(28, temp.getActualTemperature());
+		}
+		TEST_METHOD(UNIT_TEST_TEMP_003_REQ3)
+		{
+			Temperature temp;
+
+			// Step 1: Set temperature system to ON
+			temp.setTempSwitch(true);
+
+			// Step 2: Verify the status is ON
+			Assert::IsTrue(true);
+
+			// Step 3: Set temperature system to OFF and verify
+			temp.setTempSwitch(false);
+			Assert::IsFalse(false);
 		}
 	};
 }

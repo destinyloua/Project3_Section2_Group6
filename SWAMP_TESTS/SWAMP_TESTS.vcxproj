@@ -164,6 +164,7 @@
     <ClCompile Include="..\SWAMP-Greenhouse\Humidity.cpp" />
     <ClCompile Include="..\SWAMP-Greenhouse\Lights.cpp" />
     <ClCompile Include="..\SWAMP-Greenhouse\SOILMOISTURE.CPP" />
+    <ClCompile Include="..\SWAMP-Greenhouse\Temperature.cpp" />
     <ClCompile Include="..\SWAMP-Greenhouse\User.cpp" />
     <ClCompile Include="SWAMP_TESTS.cpp" />
   </ItemGroup>
@@ -174,6 +175,7 @@
     <ClInclude Include="..\SWAMP-Greenhouse\Energy.h" />
     <ClInclude Include="..\SWAMP-Greenhouse\Humidity.h" />
     <ClInclude Include="..\SWAMP-Greenhouse\Lights.h" />
+    <ClInclude Include="..\SWAMP-Greenhouse\Temperature.h" />
     <ClInclude Include="..\SWAMP-Greenhouse\User.h" />
   </ItemGroup>
   <ItemGroup>
