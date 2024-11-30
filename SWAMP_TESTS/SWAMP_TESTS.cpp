@@ -12,7 +12,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace SWAMPTESTS
 {
-	TEST_CLASS(SWAMPTESTS)
+	TEST_CLASS(CO2TESTS)
 	{
 	
 	public:
@@ -81,10 +81,17 @@ namespace SWAMPTESTS
 			Assert::AreNotEqual(prevValue, newValue);
 		}
 
+	};
+
+	TEST_CLASS(ENERGYTESTS) 
+	{
+
+	public:
+
 		// ENERGY TESTS - Destiny
 		// Testing that Energy reads values from the vector in the correct order -- req #1
 		TEST_METHOD(UNIT_TEST_ENERGY_001_REQ1) {
-			Energy e; 
+			Energy e;
 			// add mock values to energyHistory vector - these values appear in the simulation file 
 			e.addToEnergyHistory(200.00);
 			e.addToEnergyHistory(210.00);
@@ -121,6 +128,7 @@ namespace SWAMPTESTS
 
 			Assert::IsFalse(e.getLowPowerStatus());
 		}
+
 	};
 
 	// Humidity Tests Liam
