@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "CppUnitTest.h"
 #include <fstream>
 #include "../SWAMP-Greenhouse/CO2.h"
@@ -11,7 +12,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace SWAMPTESTS
 {
-	TEST_CLASS(SWAMPTESTS)
+	TEST_CLASS(CO2TESTS)
 	{
 	
 	public:
@@ -80,10 +81,17 @@ namespace SWAMPTESTS
 			Assert::AreNotEqual(prevValue, newValue);
 		}
 
+	};
+
+	TEST_CLASS(ENERGYTESTS) 
+	{
+
+	public:
+
 		// ENERGY TESTS - Destiny
 		// Testing that Energy reads values from the vector in the correct order -- req #1
 		TEST_METHOD(UNIT_TEST_ENERGY_001_REQ1) {
-			Energy e; 
+			Energy e;
 			// add mock values to energyHistory vector - these values appear in the simulation file 
 			e.addToEnergyHistory(200.00);
 			e.addToEnergyHistory(210.00);
@@ -120,12 +128,15 @@ namespace SWAMPTESTS
 
 			Assert::IsFalse(e.getLowPowerStatus());
 		}
+
 	};
 
 	// Humidity Tests Liam
 	TEST_CLASS(HumidityUnitTests)
 	{
+
 	public:
+
 		// Testing generateRandomHumidity() if it actually generates random values
 		TEST_METHOD(Unit_Test_Hum_001_RandomHumidity)
 		{
@@ -136,6 +147,7 @@ namespace SWAMPTESTS
 				Assert::IsTrue((humidityLevel < 50) || (humidityLevel > 80) || ((humidityLevel >= 50) && (humidityLevel <= 80)));
 			}
 		}
+
 		// Testing alertHumidityChange() if it returns an alert when humidity is out of range (too low)
 		TEST_METHOD(Unit_Test_Hum_002_LowHumidity)
 		{
@@ -145,6 +157,7 @@ namespace SWAMPTESTS
 			std::string actual = h.alertHumidityChange();
 			Assert::AreEqual(expected, actual);
 		}
+
 		// Testing alertHumidityChange() if it returns an alert when humidity is out of range (too high)
 		TEST_METHOD(Unit_Test_Hum_002_HighHumidity)
 		{
@@ -154,6 +167,7 @@ namespace SWAMPTESTS
 			std::string actual = h.alertHumidityChange();
 			Assert::AreEqual(expected, actual);
 		}
+
 		// Testing alertHumidityChange() if it returns an alert when humidity is in range
 		TEST_METHOD(Unit_Test_Hum_002_NormalHumidity)
 		{
