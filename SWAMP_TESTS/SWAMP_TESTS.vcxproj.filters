@@ -18,13 +18,24 @@
     <ClCompile Include="SWAMP_TESTS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="..\SWAMP-Greenhouse\SOILMOISTURE.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SWAMP-Greenhouse\Device.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h">
+    <ClInclude Include="..\SWAMP-Greenhouse\SoilMoisture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\SWAMP-Greenhouse\Device.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\SWAMP-Greenhouse\moistureData.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

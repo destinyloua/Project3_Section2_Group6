@@ -14,7 +14,7 @@ SoilMoisture::SoilMoisture()
 	this->threshold = 30;
 	this->soilMoistureLevel = 0;
 	this->soilMoistureData = SIMULATION_FILE;
-	this->irrigation = true;
+	this->irrigation = false;
 	this->fp.open(soilMoistureData);
 }
 
