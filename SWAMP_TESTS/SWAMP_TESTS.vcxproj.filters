@@ -18,12 +18,12 @@
     <ClCompile Include="SWAMP_TESTS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="..\SWAMP-Greenhouse\Humidity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h">
+    <ClInclude Include="..\SWAMP-Greenhouse\Humidity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
