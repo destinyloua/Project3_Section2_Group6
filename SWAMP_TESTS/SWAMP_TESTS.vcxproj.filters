@@ -39,6 +39,9 @@
     <ClCompile Include="..\SWAMP-Greenhouse\User.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\SWAMP-Greenhouse\Temperature.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\SWAMP-Greenhouse\Camera.h">
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\SWAMP-Greenhouse\User.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SWAMP-Greenhouse\Temperature.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
