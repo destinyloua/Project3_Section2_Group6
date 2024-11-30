@@ -136,7 +136,7 @@ void CO2::setDanger()
 
 void CO2::updateCO2Value(double currentTime)
 {
-    if (currentTime - lastUpdateTime >= 60.0) {
+    if (currentTime - lastUpdateTime >= 50.0) {
         CO2Value = co2History[index++];
         setDanger();
         cout << "CO2 value updated" << endl;

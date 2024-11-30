@@ -66,7 +66,7 @@ void Energy::readData()
 void Energy::enableLowPower()
 {
     watts = 250;
-    lowPower = true; 
+    lowPower = true;
     cout << "Enabling Low Power -- System will maintain " << watts << " watts" << endl;
 }
 
@@ -120,10 +120,12 @@ void Energy::showPowerOptions()
 void Energy::showPowerStatus()
 {
     if (lowPower) {
-        cout << "Low Power Mode: ON" << endl; 
+       // cout << "Low Power Mode: ON" << endl; 
+        DrawText(TextFormat("Low Power: ON"), 310, 900, 20, GREEN);
     }
     else {
-        cout << "Low Power Mode: OFF" << endl;
+       // cout << "Low Power Mode: OFF" << endl;
+        DrawText(TextFormat("Low Power: OFF"), 310, 900, 20, BLACK);
     }
 }
 
@@ -180,7 +182,7 @@ void Energy::drawEnergyButton(Rectangle btn)
     double currentTime = GetTime();
 
     if (index < energyHistory.size()) {
-        if (currentTime - lastUpdateTime >= 5.0) {
+        if (currentTime - lastUpdateTime >= 15.0) {
             watts = energyHistory[index++];
             if (lowPower) {
                 watts = 250.00;
@@ -229,7 +231,6 @@ void Energy::drawEnergyButton(Rectangle btn)
     else {
         hideEnergyControls();
     }
- 
 }
 
 void Energy::hideEnergyControls()

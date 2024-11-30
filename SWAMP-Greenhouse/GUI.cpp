@@ -211,6 +211,7 @@ void GUI::DrawPanels(CO2& c, Energy& e, SoilMoisture& s, Humidity& h) {
     if (e.tooMuchPower) {
         e.displayWarning();
     }
+    e.showPowerStatus();
 
     h.displayWarning();
     // User info
